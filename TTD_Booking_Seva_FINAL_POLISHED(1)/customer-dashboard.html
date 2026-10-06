@@ -1,0 +1,31 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Customer Dashboard</title><link rel="stylesheet" href="style.css"></head><body onload="if(requireRole('customer')) showCustomer()">
+<nav class="nav"><div class="wrap"><a href="index.html">TTD Booking Seva</a><a href="#" onclick="logout();return false">Logout</a></div></nav>
+<section class="dashboard"><div class="wrap"><div class="topline"><h1>My Booking Dashboard</h1><span class="pill">Private Customer Area</span></div>
+<div class="cards"><div class="card"><h2 id="customerName">-</h2><p id="customerEmail">-</p><p>Customer ID: <b id="customerId">-</b></p></div>
+<div class="card"><h2>Booking</h2><p>Seva: <b id="customerSeva">-</b></p><p>Date: <b id="customerDate">-</b></p><p>Time: <b id="customerTime">-</b></p><p>Status: <span class="pill" id="customerStatus">-</span></p></div></div></div></section>
+<script src="auth.js"></script><script>
+(function(){
+  const glow=document.createElement('div');
+  const dot=document.createElement('div');
+  glow.className='cursor-glow';
+  dot.className='cursor-dot';
+  document.body.append(glow,dot);
+
+  let tx=0,ty=0,gx=0,gy=0;
+  document.addEventListener('mousemove',e=>{
+    tx=e.clientX; ty=e.clientY;
+    dot.style.left=tx+'px'; dot.style.top=ty+'px';
+  });
+  function animate(){
+    gx+=(tx-gx)*.16; gy+=(ty-gy)*.16;
+    glow.style.left=gx+'px'; glow.style.top=gy+'px';
+    requestAnimationFrame(animate);
+  }
+  animate();
+
+  document.querySelectorAll('a,button,.card,.gallery-card').forEach(el=>{
+    el.addEventListener('mouseenter',()=>document.body.classList.add('cursor-active'));
+    el.addEventListener('mouseleave',()=>document.body.classList.remove('cursor-active'));
+  });
+})();
+</script></body></html>

@@ -1,0 +1,2005 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Help Center | TTD Booking Seva</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+/* =====================================================
+   PREMIUM TTD HELP CENTER
+===================================================== */
+
+:root{
+    --gold:#ffd166;
+    --gold2:#f5b942;
+    --dark:#16070b;
+    --dark2:#2a0b14;
+    --text:#fff3d0;
+    --muted:#cdbb9b;
+    --border:rgba(255,209,102,.22);
+}
+
+*{
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    margin:0;
+    font-family:Arial,Helvetica,sans-serif;
+    color:var(--text);
+
+    background:
+        radial-gradient(circle at 15% 10%,rgba(255,209,102,.09),transparent 25%),
+        radial-gradient(circle at 85% 30%,rgba(120,0,35,.18),transparent 30%),
+        linear-gradient(135deg,#16070b,#300c17,#140609);
+
+    min-height:100vh;
+}
+
+/* =====================================================
+   NAVIGATION
+===================================================== */
+
+.nav{
+    position:sticky;
+    top:0;
+    z-index:1000;
+
+    background:rgba(18,5,9,.82);
+    backdrop-filter:blur(18px);
+
+    border-bottom:1px solid var(--border);
+}
+
+.nav .wrap{
+    max-width:1200px;
+    margin:auto;
+
+    padding:14px 20px;
+
+    display:flex;
+    align-items:center;
+    gap:22px;
+
+    flex-wrap:wrap;
+}
+
+.nav a{
+    color:#f7e5b9;
+    text-decoration:none;
+    font-weight:600;
+
+    transition:.3s;
+}
+
+.nav a:first-child{
+    color:var(--gold);
+    font-size:20px;
+    margin-right:auto;
+}
+
+.nav a:hover,
+.nav a.active{
+    color:var(--gold);
+}
+
+/* =====================================================
+   PAGE
+===================================================== */
+
+.page{
+    max-width:1200px;
+    margin:auto;
+    padding:0 20px 70px;
+}
+
+/* =====================================================
+   HERO
+===================================================== */
+
+.help-hero{
+    min-height:430px;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+
+    text-align:center;
+
+    position:relative;
+    overflow:hidden;
+}
+
+.help-hero::before{
+    content:"ॐ";
+
+    position:absolute;
+
+    font-size:230px;
+
+    color:rgba(255,209,102,.035);
+
+    animation:omFloat 5s ease-in-out infinite;
+
+    pointer-events:none;
+}
+
+@keyframes omFloat{
+
+    0%,100%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-18px);
+    }
+}
+
+.hero-badge{
+    position:relative;
+
+    padding:8px 17px;
+
+    border-radius:50px;
+
+    background:rgba(255,209,102,.08);
+
+    border:1px solid var(--border);
+
+    color:var(--gold);
+
+    font-size:12px;
+    font-weight:bold;
+    letter-spacing:2px;
+
+    animation:fadeDown .8s ease;
+}
+
+.help-hero h1{
+    position:relative;
+
+    margin:18px 0 10px;
+
+    font-size:clamp(42px,7vw,72px);
+
+    color:var(--gold);
+
+    text-shadow:
+        0 0 30px rgba(255,209,102,.16);
+
+    animation:fadeUp .9s ease;
+}
+
+.help-hero p{
+    position:relative;
+
+    max-width:650px;
+
+    color:var(--muted);
+
+    font-size:16px;
+
+    line-height:1.7;
+
+    animation:fadeUp 1s ease;
+}
+
+/* =====================================================
+   ASK QUESTION
+===================================================== */
+
+.ask-box{
+
+    width:min(720px,100%);
+
+    margin-top:24px;
+
+    position:relative;
+
+    z-index:2;
+
+    animation:fadeUp 1.2s ease;
+}
+
+.ask-box textarea{
+
+    width:100%;
+
+    min-height:105px;
+
+    resize:none;
+
+    padding:18px 20px;
+
+    border-radius:20px;
+
+    border:1px solid var(--border);
+
+    outline:none;
+
+    background:rgba(255,255,255,.07);
+
+    color:white;
+
+    font-size:15px;
+
+    line-height:1.5;
+
+    backdrop-filter:blur(15px);
+
+    transition:.3s;
+}
+
+.ask-box textarea:focus{
+
+    border-color:var(--gold);
+
+    box-shadow:
+        0 0 25px rgba(255,209,102,.12);
+}
+
+.ask-box textarea::placeholder{
+    color:#b9a88d;
+}
+
+.ask-bottom{
+
+    display:flex;
+
+    justify-content:flex-end;
+
+    margin-top:10px;
+}
+
+.ask-button{
+
+    border:none;
+
+    padding:12px 23px;
+
+    border-radius:50px;
+
+    cursor:pointer;
+
+    font-weight:bold;
+
+    color:#351000;
+
+    background:linear-gradient(
+        135deg,
+        var(--gold),
+        var(--gold2)
+    );
+
+    box-shadow:
+        0 8px 25px rgba(255,209,102,.15);
+
+    transition:.3s;
+}
+
+.ask-button:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:
+        0 12px 30px rgba(255,209,102,.25);
+}
+
+/* =====================================================
+   ANSWER
+===================================================== */
+
+.answer-box{
+
+    display:none;
+
+    width:min(720px,100%);
+
+    margin:18px auto 0;
+
+    padding:20px;
+
+    border-radius:18px;
+
+    background:rgba(255,255,255,.06);
+
+    border:1px solid rgba(255,209,102,.3);
+
+    text-align:left;
+
+    animation:fadeUp .4s ease;
+}
+
+.answer-box.show{
+    display:block;
+}
+
+.answer-title{
+
+    color:var(--gold);
+
+    font-weight:bold;
+
+    margin-bottom:8px;
+}
+
+.answer-text{
+
+    color:#dfcda9;
+
+    line-height:1.7;
+
+    font-size:14px;
+}
+
+/* =====================================================
+   SECTION
+===================================================== */
+
+.section{
+    margin-top:70px;
+}
+
+.section-title{
+
+    text-align:center;
+
+    margin-bottom:30px;
+}
+
+.section-title span{
+
+    color:var(--gold);
+
+    font-size:12px;
+
+    font-weight:bold;
+
+    letter-spacing:2px;
+
+    text-transform:uppercase;
+}
+
+.section-title h2{
+
+    margin:9px 0;
+
+    font-size:clamp(28px,4vw,40px);
+}
+
+.section-title p{
+    color:var(--muted);
+}
+
+/* =====================================================
+   HELP CARDS
+===================================================== */
+
+.help-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:18px;
+}
+
+.help-card{
+
+    position:relative;
+
+    padding:25px;
+
+    min-height:205px;
+
+    border-radius:22px;
+
+    background:rgba(255,255,255,.055);
+
+    border:1px solid var(--border);
+
+    backdrop-filter:blur(14px);
+
+    overflow:hidden;
+
+    transition:.35s ease;
+}
+
+.help-card::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:120px;
+    height:120px;
+
+    right:-50px;
+    top:-50px;
+
+    border-radius:50%;
+
+    background:rgba(255,209,102,.055);
+}
+
+.help-card:hover{
+
+    transform:
+        translateY(-8px)
+        perspective(700px)
+        rotateX(2deg);
+
+    border-color:rgba(255,209,102,.65);
+
+    box-shadow:
+        0 20px 40px rgba(0,0,0,.3);
+}
+
+.help-icon{
+
+    width:58px;
+    height:58px;
+
+    display:grid;
+    place-items:center;
+
+    border-radius:17px;
+
+    background:rgba(255,209,102,.1);
+
+    border:1px solid var(--border);
+
+    font-size:28px;
+}
+
+.help-card h3{
+
+    color:var(--gold);
+
+    margin:16px 0 8px;
+}
+
+.help-card p{
+
+    color:var(--muted);
+
+    font-size:14px;
+
+    line-height:1.6;
+}
+
+/* =====================================================
+   CLICKABLE BUTTONS
+===================================================== */
+
+.card-button{
+
+    display:inline-block;
+
+    margin-top:8px;
+
+    padding:9px 15px;
+
+    border-radius:30px;
+
+    border:1px solid var(--border);
+
+    color:var(--gold);
+
+    background:rgba(255,209,102,.05);
+
+    cursor:pointer;
+
+    font-size:13px;
+
+    transition:.3s;
+}
+
+.card-button:hover{
+
+    background:rgba(255,209,102,.12);
+
+    transform:translateY(-2px);
+}
+
+/* =====================================================
+   QUICK OPTIONS
+===================================================== */
+
+.quick-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap:15px;
+}
+
+.quick-card{
+
+    padding:22px;
+
+    text-align:center;
+
+    border-radius:18px;
+
+    background:rgba(255,255,255,.05);
+
+    border:1px solid var(--border);
+
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+.quick-card:hover{
+
+    transform:translateY(-6px);
+
+    border-color:var(--gold);
+
+    background:rgba(255,209,102,.07);
+}
+
+.quick-card .emoji{
+
+    font-size:30px;
+}
+
+.quick-card h3{
+
+    color:var(--gold);
+
+    font-size:16px;
+}
+
+/* =====================================================
+   FAQ
+===================================================== */
+
+.faq-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap:14px;
+}
+
+.faq{
+
+    border-radius:16px;
+
+    background:rgba(255,255,255,.05);
+
+    border:1px solid var(--border);
+
+    overflow:hidden;
+
+    transition:.3s;
+}
+
+.faq:hover,
+.faq[open]{
+
+    border-color:rgba(255,209,102,.6);
+}
+
+.faq summary{
+
+    list-style:none;
+
+    cursor:pointer;
+
+    padding:19px;
+
+    padding-right:50px;
+
+    position:relative;
+
+    font-weight:bold;
+
+    color:#ffefca;
+}
+
+.faq summary::-webkit-details-marker{
+    display:none;
+}
+
+.faq summary::after{
+
+    content:"+";
+
+    position:absolute;
+
+    right:18px;
+
+    color:var(--gold);
+
+    font-size:22px;
+}
+
+.faq[open] summary::after{
+    content:"−";
+}
+
+.faq p{
+
+    margin:0;
+
+    padding:0 19px 19px;
+
+    color:var(--muted);
+
+    line-height:1.7;
+
+    font-size:14px;
+}
+
+/* =====================================================
+   SUPPORT
+===================================================== */
+
+.support{
+
+    display:grid;
+
+    grid-template-columns:
+        1.1fr 1fr;
+
+    gap:25px;
+
+    padding:32px;
+
+    border-radius:25px;
+
+    background:
+        radial-gradient(
+            circle at 90% 10%,
+            rgba(255,209,102,.12),
+            transparent 30%
+        ),
+        rgba(255,255,255,.05);
+
+    border:1px solid var(--border);
+}
+
+.support h2{
+
+    color:var(--gold);
+
+    font-size:32px;
+
+    margin-top:8px;
+}
+
+.support p{
+
+    color:var(--muted);
+
+    line-height:1.7;
+}
+
+.support-buttons{
+
+    display:grid;
+
+    gap:12px;
+}
+
+.support-btn{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:14px;
+
+    padding:16px;
+
+    border-radius:15px;
+
+    color:white;
+
+    text-decoration:none;
+
+    background:rgba(0,0,0,.17);
+
+    border:1px solid var(--border);
+
+    transition:.3s;
+}
+
+.support-btn:hover{
+
+    transform:translateX(7px);
+
+    border-color:var(--gold);
+}
+
+.support-btn b{
+
+    display:block;
+
+    color:var(--gold);
+
+    margin-bottom:4px;
+}
+
+.support-btn small{
+
+    color:var(--muted);
+}
+
+.support-icon{
+    font-size:25px;
+}
+
+/* =====================================================
+   JOURNEY
+===================================================== */
+
+.journey{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap:15px;
+}
+
+.journey-card{
+
+    text-align:center;
+
+    padding:24px 16px;
+
+    border-radius:18px;
+
+    background:rgba(255,255,255,.05);
+
+    border:1px solid var(--border);
+
+    transition:.3s;
+}
+
+.journey-card:hover{
+
+    transform:translateY(-7px);
+
+    border-color:var(--gold);
+}
+
+.journey-number{
+
+    width:46px;
+    height:46px;
+
+    margin:auto;
+
+    display:grid;
+
+    place-items:center;
+
+    border-radius:50%;
+
+    color:#351000;
+
+    font-weight:bold;
+
+    background:linear-gradient(
+        135deg,
+        var(--gold),
+        var(--gold2)
+    );
+}
+
+.journey-card h3{
+    color:var(--gold);
+}
+
+.journey-card p{
+
+    color:var(--muted);
+
+    font-size:14px;
+
+    line-height:1.6;
+}
+
+/* =====================================================
+   FINAL
+===================================================== */
+
+.final-banner{
+
+    margin-top:75px;
+
+    padding:55px 20px;
+
+    text-align:center;
+
+    border-radius:28px;
+
+    border:1px solid var(--border);
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,209,102,.12),
+            transparent 60%
+        );
+}
+
+.final-banner .om{
+
+    font-size:48px;
+
+    color:var(--gold);
+}
+
+.final-banner h2{
+
+    color:var(--gold);
+
+    font-size:clamp(27px,4vw,42px);
+}
+
+.final-banner p{
+
+    max-width:650px;
+
+    margin:auto;
+
+    color:var(--muted);
+
+    line-height:1.7;
+}
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+footer{
+
+    text-align:center;
+
+    padding:32px 20px;
+
+    border-top:1px solid var(--border);
+
+    background:rgba(0,0,0,.2);
+
+    color:var(--muted);
+}
+
+footer strong{
+    color:var(--gold);
+}
+
+/* =====================================================
+   SMALL CURSOR
+===================================================== */
+
+.cursor-glow{
+
+    position:fixed;
+
+    width:75px;
+    height:75px;
+
+    border-radius:50%;
+
+    pointer-events:none;
+
+    z-index:9999;
+
+    transform:translate(-50%,-50%);
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,209,102,.12),
+            transparent 70%
+        );
+}
+
+.cursor-dot{
+
+    position:fixed;
+
+    width:5px;
+    height:5px;
+
+    border-radius:50%;
+
+    pointer-events:none;
+
+    z-index:10000;
+
+    transform:translate(-50%,-50%);
+
+    background:var(--gold);
+
+    box-shadow:
+        0 0 8px rgba(255,209,102,.8);
+}
+
+/* =====================================================
+   ANIMATIONS
+===================================================== */
+
+@keyframes fadeUp{
+
+    from{
+        opacity:0;
+        transform:translateY(22px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+@keyframes fadeDown{
+
+    from{
+        opacity:0;
+        transform:translateY(-18px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media(max-width:900px){
+
+    .help-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .quick-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .journey{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .support{
+        grid-template-columns:1fr;
+    }
+}
+
+@media(max-width:650px){
+
+    .nav .wrap{
+        justify-content:center;
+        gap:12px;
+    }
+
+    .nav a:first-child{
+        width:100%;
+        text-align:center;
+        margin:0;
+    }
+
+    .help-grid,
+    .faq-grid,
+    .quick-grid,
+    .journey{
+        grid-template-columns:1fr;
+    }
+
+    .support{
+        padding:24px;
+    }
+
+    .cursor-glow,
+    .cursor-dot{
+        display:none;
+    }
+}
+
+</style>
+</head>
+
+
+<body>
+
+<!-- =====================================================
+     NAVIGATION
+===================================================== -->
+
+<nav class="nav">
+
+<div class="wrap">
+
+<a href="index.html">
+🛕 TTD Booking Seva
+</a>
+
+<a href="index.html">Home</a>
+
+<a href="darshan.html">Darshan</a>
+
+<a href="sevas.html">Sevas</a>
+
+<a href="gallery.html">Gallery</a>
+
+<a href="temple.html">Temple</a>
+
+<a href="contact.html" class="active">
+Help Center
+</a>
+
+</div>
+
+</nav>
+
+
+<main class="page">
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<section class="help-hero">
+
+<span class="hero-badge">
+🛕 TTD HELP CENTER
+</span>
+
+<h1>How Can We Help?</h1>
+
+<p>
+Ask your question directly and get quick guidance
+about booking, darshan, sevas and temple visits.
+</p>
+
+
+<!-- ASK QUESTION -->
+
+<div class="ask-box">
+
+<textarea
+id="questionInput"
+placeholder="Type your question here... Example: How can I prepare for darshan?"
+></textarea>
+
+<div class="ask-bottom">
+
+<button
+class="ask-button"
+onclick="askQuestion()">
+
+Ask Question →
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- ANSWER -->
+
+<div
+id="answerBox"
+class="answer-box">
+
+<div class="answer-title">
+🙏 TTD Help Assistant
+</div>
+
+<div
+id="answerText"
+class="answer-text">
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     HELP CATEGORIES
+===================================================== -->
+
+<section class="section">
+
+<div class="section-title">
+
+<span>Quick Support</span>
+
+<h2>Choose a Help Category</h2>
+
+<p>
+Click a category to get information.
+</p>
+
+</div>
+
+
+<div class="help-grid">
+
+
+<div class="help-card">
+
+<div class="help-icon">
+🎟️
+</div>
+
+<h3>Booking Help</h3>
+
+<p>
+Questions about booking, dates,
+time slots and confirmation.
+</p>
+
+<button
+class="card-button"
+onclick="categoryQuestion('booking')">
+
+Ask About Booking
+
+</button>
+
+</div>
+
+
+<div class="help-card">
+
+<div class="help-icon">
+🙏
+</div>
+
+<h3>Darshan Guidance</h3>
+
+<p>
+Questions about darshan,
+reporting and visit preparation.
+</p>
+
+<button
+class="card-button"
+onclick="categoryQuestion('darshan')">
+
+Ask About Darshan
+
+</button>
+
+</div>
+
+
+<div class="help-card">
+
+<div class="help-icon">
+🪔
+</div>
+
+<h3>Seva Information</h3>
+
+<p>
+Questions about sevas,
+procedures and general guidance.
+</p>
+
+<button
+class="card-button"
+onclick="categoryQuestion('seva')">
+
+Ask About Seva
+
+</button>
+
+</div>
+
+
+<div class="help-card">
+
+<div class="help-icon">
+🛕
+</div>
+
+<h3>Temple Guide</h3>
+
+<p>
+Questions about temple visits,
+rules and general information.
+</p>
+
+<button
+class="card-button"
+onclick="categoryQuestion('temple')">
+
+Ask About Temple
+
+</button>
+
+</div>
+
+
+<div class="help-card">
+
+<div class="help-icon">
+🧳
+</div>
+
+<h3>Travel Support</h3>
+
+<p>
+Questions about planning your
+journey and visit.
+</p>
+
+<button
+class="card-button"
+onclick="categoryQuestion('travel')">
+
+Ask About Travel
+
+</button>
+
+</div>
+
+
+<div class="help-card">
+
+<div class="help-icon">
+🔐
+</div>
+
+<h3>Safety</h3>
+
+<p>
+Questions about personal data,
+booking safety and security.
+</p>
+
+<button
+class="card-button"
+onclick="categoryQuestion('safety')">
+
+Ask About Safety
+
+</button>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     QUICK QUESTIONS
+===================================================== -->
+
+<section class="section">
+
+<div class="section-title">
+
+<span>Quick Access</span>
+
+<h2>What Would You Like To Know?</h2>
+
+<p>
+Select a topic to automatically ask about it.
+</p>
+
+</div>
+
+
+<div class="quick-grid">
+
+
+<div
+class="quick-card"
+onclick="quickQuestion('booking')">
+
+<div class="emoji">🎟️</div>
+
+<h3>Booking</h3>
+
+</div>
+
+
+<div
+class="quick-card"
+onclick="quickQuestion('darshan')">
+
+<div class="emoji">🙏</div>
+
+<h3>Darshan</h3>
+
+</div>
+
+
+<div
+class="quick-card"
+onclick="quickQuestion('seva')">
+
+<div class="emoji">🪔</div>
+
+<h3>Sevas</h3>
+
+</div>
+
+
+<div
+class="quick-card"
+onclick="quickQuestion('temple')">
+
+<div class="emoji">🛕</div>
+
+<h3>Temple</h3>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     FAQ
+===================================================== -->
+
+<section class="section">
+
+<div class="section-title">
+
+<span>Common Topics</span>
+
+<h2>Quick Information</h2>
+
+<p>
+Open any topic to read the available guidance.
+</p>
+
+</div>
+
+
+<div class="faq-grid">
+
+
+<details class="faq">
+
+<summary>
+Booking preparation
+</summary>
+
+<p>
+Review the applicable booking information,
+date, time and reporting instructions before
+your visit.
+</p>
+
+</details>
+
+
+<details class="faq">
+
+<summary>
+Darshan preparation
+</summary>
+
+<p>
+Keep your required documents available and
+follow the instructions applicable to your
+booking.
+</p>
+
+</details>
+
+
+<details class="faq">
+
+<summary>
+Visitor guidelines
+</summary>
+
+<p>
+Follow temple staff and security instructions
+during your visit and respect temple traditions.
+</p>
+
+</details>
+
+
+<details class="faq">
+
+<summary>
+Personal information safety
+</summary>
+
+<p>
+Do not share passwords, booking credentials
+or sensitive personal information with unknown
+people.
+</p>
+
+</details>
+
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     SUPPORT
+===================================================== -->
+
+<section class="section">
+
+<div class="support">
+
+<div>
+
+<span style="
+color:#ffd166;
+font-size:12px;
+font-weight:bold;
+letter-spacing:2px;
+">
+NEED MORE HELP?
+</span>
+
+<h2>
+Explore More
+</h2>
+
+<p>
+Use the buttons to move directly to other
+sections of your TTD Booking Seva website.
+</p>
+
+<p>
+This is an educational demonstration website.
+It does not process real bookings or payments.
+</p>
+
+</div>
+
+
+<div class="support-buttons">
+
+
+<a
+href="darshan.html"
+class="support-btn">
+
+<span class="support-icon">
+🙏
+</span>
+
+<div>
+
+<b>Darshan Information</b>
+
+<small>
+Open Darshan page
+</small>
+
+</div>
+
+</a>
+
+
+<a
+href="sevas.html"
+class="support-btn">
+
+<span class="support-icon">
+🪔
+</span>
+
+<div>
+
+<b>Seva Information</b>
+
+<small>
+Open Sevas page
+</small>
+
+</div>
+
+</a>
+
+
+<a
+href="gallery.html"
+class="support-btn">
+
+<span class="support-icon">
+🖼️
+</span>
+
+<div>
+
+<b>Temple Gallery</b>
+
+<small>
+Open Gallery page
+</small>
+
+</div>
+
+</a>
+
+
+<a
+href="temple.html"
+class="support-btn">
+
+<span class="support-icon">
+🛕
+</span>
+
+<div>
+
+<b>Temple Information</b>
+
+<small>
+Open Temple page
+</small>
+
+</div>
+
+</a>
+
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     JOURNEY
+===================================================== -->
+
+<section class="section">
+
+<div class="section-title">
+
+<span>Your Journey</span>
+
+<h2>Plan Your Visit</h2>
+
+<p>
+Four simple steps for your pilgrimage.
+</p>
+
+</div>
+
+
+<div class="journey">
+
+
+<div class="journey-card">
+
+<div class="journey-number">
+1
+</div>
+
+<h3>Plan</h3>
+
+<p>
+Prepare your visit and check the
+required information.
+</p>
+
+</div>
+
+
+<div class="journey-card">
+
+<div class="journey-number">
+2
+</div>
+
+<h3>Book</h3>
+
+<p>
+Complete the applicable booking
+process through an authorized service.
+</p>
+
+</div>
+
+
+<div class="journey-card">
+
+<div class="journey-number">
+3
+</div>
+
+<h3>Travel</h3>
+
+<p>
+Carry required documents and
+follow applicable instructions.
+</p>
+
+</div>
+
+
+<div class="journey-card">
+
+<div class="journey-number">
+4
+</div>
+
+<h3>Darshan</h3>
+
+<p>
+Follow temple instructions and
+enjoy a peaceful visit.
+</p>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     FINAL
+===================================================== -->
+
+<section class="final-banner">
+
+<div class="om">
+ॐ
+</div>
+
+<h2>
+Have a Peaceful Pilgrimage
+</h2>
+
+<p>
+Plan carefully, follow official instructions,
+respect temple traditions and enjoy your
+Tirumala journey.
+</p>
+
+</section>
+
+
+</main>
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer>
+
+<strong>
+TTD Booking Seva
+</strong>
+
+<p>
+Front-end educational demonstration •
+Not an official TTD website
+</p>
+
+</footer>
+
+
+<!-- =====================================================
+     QUESTION JAVASCRIPT
+===================================================== -->
+
+<script>
+
+function askQuestion(){
+
+    const input =
+        document.getElementById("questionInput");
+
+    const answerBox =
+        document.getElementById("answerBox");
+
+    const answerText =
+        document.getElementById("answerText");
+
+    const question =
+        input.value.trim().toLowerCase();
+
+
+    if(question === ""){
+
+        answerBox.classList.add("show");
+
+        answerText.innerHTML =
+            "Please type your question first. You can ask anything related to booking, darshan, sevas, temple visits or general visitor guidance.";
+
+        return;
+
+    }
+
+
+    let answer =
+        "Please check the relevant section of this website for more information.";
+
+
+    /* BOOKING */
+
+    if(
+        question.includes("book") ||
+        question.includes("booking") ||
+        question.includes("ticket") ||
+        question.includes("slot") ||
+        question.includes("date")
+    ){
+
+        answer =
+        "For booking-related questions, check your selected date, booking type, time slot and confirmation information carefully. For real bookings, always use an authorized TTD service.";
+
+    }
+
+
+    /* DARSHAN */
+
+    else if(
+        question.includes("darshan") ||
+        question.includes("report") ||
+        question.includes("entry") ||
+        question.includes("dress")
+    ){
+
+        answer =
+        "For darshan-related questions, check the reporting instructions applicable to your booking, keep the required documents ready and follow temple staff and security instructions.";
+
+    }
+
+
+    /* SEVA */
+
+    else if(
+        question.includes("seva") ||
+        question.includes("pooja") ||
+        question.includes("puja")
+    ){
+
+        answer =
+        "For seva-related questions, check the applicable seva information, date, timing and reporting instructions before your visit.";
+
+    }
+
+
+    /* TEMPLE */
+
+    else if(
+        question.includes("temple") ||
+        question.includes("tirumala") ||
+        question.includes("tirupati")
+    ){
+
+        answer =
+        "For temple-related questions, follow temple guidelines, respect traditions and follow instructions from authorized temple staff during your visit.";
+
+    }
+
+
+    /* TRAVEL */
+
+    else if(
+        question.includes("travel") ||
+        question.includes("bus") ||
+        question.includes("transport") ||
+        question.includes("stay") ||
+        question.includes("hotel")
+    ){
+
+        answer =
+        "For travel questions, plan your transportation and stay in advance and verify current information through authorized sources.";
+
+    }
+
+
+    /* SAFETY */
+
+    else if(
+        question.includes("safe") ||
+        question.includes("security") ||
+        question.includes("password") ||
+        question.includes("account")
+    ){
+
+        answer =
+        "Keep your personal information, passwords and booking credentials private. Do not share sensitive information with unknown people.";
+
+    }
+
+
+    /* GENERAL */
+
+    else {
+
+        answer =
+        "I can help with general guidance about booking, darshan, sevas, temple visits, travel planning and account safety. Try asking a more specific question.";
+
+    }
+
+
+    answerBox.classList.add("show");
+
+    answerText.innerHTML = answer;
+
+    answerBox.scrollIntoView({
+        behavior:"smooth",
+        block:"center"
+    });
+
+}
+
+
+/* =====================================================
+   CATEGORY BUTTONS
+===================================================== */
+
+function categoryQuestion(type){
+
+    const input =
+        document.getElementById("questionInput");
+
+    const questions = {
+
+        booking:
+        "How can I get help with booking?",
+
+        darshan:
+        "How should I prepare for darshan?",
+
+        seva:
+        "How can I get information about sevas?",
+
+        temple:
+        "What should I know before visiting the temple?",
+
+        travel:
+        "How should I plan my travel?",
+
+        safety:
+        "How can I keep my booking information safe?"
+
+    };
+
+    input.value = questions[type];
+
+    askQuestion();
+
+}
+
+
+/* =====================================================
+   QUICK TOPICS
+===================================================== */
+
+function quickQuestion(type){
+
+    categoryQuestion(type);
+
+}
+
+</script>
+
+
+<!-- =====================================================
+     SMALL CURSOR EFFECT
+===================================================== -->
+
+<script>
+
+if(window.innerWidth > 650){
+
+    const glow =
+        document.createElement("div");
+
+    const dot =
+        document.createElement("div");
+
+
+    glow.className =
+        "cursor-glow";
+
+    dot.className =
+        "cursor-dot";
+
+
+    document.body.appendChild(glow);
+
+    document.body.appendChild(dot);
+
+
+    let mouseX = 0;
+    let mouseY = 0;
+
+    let glowX = 0;
+    let glowY = 0;
+
+
+    document.addEventListener(
+        "mousemove",
+        function(e){
+
+            mouseX =
+                e.clientX;
+
+            mouseY =
+                e.clientY;
+
+
+            dot.style.left =
+                mouseX + "px";
+
+            dot.style.top =
+                mouseY + "px";
+
+        }
+    );
+
+
+    function moveGlow(){
+
+        glowX +=
+            (mouseX - glowX) * .15;
+
+        glowY +=
+            (mouseY - glowY) * .15;
+
+
+        glow.style.left =
+            glowX + "px";
+
+        glow.style.top =
+            glowY + "px";
+
+
+        requestAnimationFrame(
+            moveGlow
+        );
+
+    }
+
+
+    moveGlow();
+
+}
+
+</script>
+
+</body>
+</html>

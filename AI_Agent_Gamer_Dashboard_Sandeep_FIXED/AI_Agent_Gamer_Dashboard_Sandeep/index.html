@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AgentX Gamer Command Center</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="cursor-glow"></div>
+<div class="scanlines"></div>
+
+<aside class="sidebar">
+  <div class="brand"><span class="brand-orb">✦</span><div>AGENT<span>X</span><small>GAMER COMMAND CENTER</small></div></div>
+  <nav>
+    <a class="active" href="index.html">⌂ <span>Dashboard</span></a>
+    <a href="agents.html">◈ <span>AI Agents</span><b>12</b></a>
+    <a href="tasks.html">▣ <span>Task Queue</span><b>7</b></a>
+    <a href="workflows.html">⌘ <span>Workflows</span></a>
+    <a href="activity.html">◉ <span>Activity Log</span></a>
+    <a href="history.html">◷ <span>Execution History</span></a>
+    <a href="builder.html">✚ <span>Agent Builder</span></a>
+  </nav>
+  <div class="side-card">
+    <div class="mini-label">PLAYER</div><strong>SANDEEP</strong>
+    <div class="xp"><i></i></div><small>LVL 24 • 8,420 XP</small>
+  </div>
+  <a class="settings" href="settings.html">⚙ Settings</a>
+</aside>
+
+<main class="main">
+<header class="topbar">
+  <div><button class="menu" onclick="toggleSide()">☰</button><div class="crumb">COMMAND CENTER / <span>LIVE</span></div></div>
+  <div class="top-actions"><div class="live"><i></i> SYSTEM ONLINE • <span class="clock"></span></div><button onclick="notify('Notifications cleared')" class="icon-btn">🔔</button><div class="avatar">S</div></div>
+</header>
+
+<section class="hero">
+  <div><div class="eyebrow">◉ AI OPERATIONS // PLAYER 01</div>
+  <h1>WELCOME BACK,<br><span>SANDEEP</span></h1>
+  <p>Control your autonomous agent squad, launch missions, inspect executions and build next-gen automation workflows.</p>
+  <div class="hero-actions"><a class="btn primary" href="agents.html">ENTER AGENT HUB →</a><a class="btn ghost" href="builder.html">＋ BUILD AGENT</a></div></div>
+  <div class="holo">
+    <div class="ring r1"></div><div class="ring r2"></div><div class="core">AI<br><small>CORE</small></div>
+    <div class="orbit o1">⚡</div><div class="orbit o2">◆</div><div class="orbit o3">●</div>
+  </div>
+</section>
+
+<section class="stats">
+  <div class="stat"><span>ACTIVE AGENTS</span><strong>12</strong><em>+3 this week</em></div>
+  <div class="stat"><span>RUNNING TASKS</span><strong>07</strong><em class="yellow">2 urgent</em></div>
+  <div class="stat"><span>SUCCESS RATE</span><strong>98.7%</strong><em>+1.4%</em></div>
+  <div class="stat"><span>COMPUTE LOAD</span><strong>64%</strong><em class="blue">OPTIMAL</em></div>
+</section>
+
+<section class="grid two">
+  <div class="panel">
+    <div class="panel-head"><div><span class="tag">LIVE</span><h2>Agent Status Monitoring</h2></div><a href="agents.html">VIEW ALL →</a></div>
+    <div class="agent-list">
+      <div class="agent"><div class="agent-icon cyan">◈</div><div><strong>Nova Sentinel</strong><small>Security & Monitoring</small></div><i class="status online"></i><span>ONLINE</span><div class="load"><i style="width:72%"></i></div><b>72%</b></div>
+      <div class="agent"><div class="agent-icon purple">◆</div><div><strong>Pixel Scout</strong><small>Game Analytics</small></div><i class="status online"></i><span>ONLINE</span><div class="load"><i style="width:48%"></i></div><b>48%</b></div>
+      <div class="agent"><div class="agent-icon orange">⚡</div><div><strong>Quest Runner</strong><small>Automation</small></div><i class="status busy"></i><span>BUSY</span><div class="load"><i style="width:91%"></i></div><b>91%</b></div>
+      <div class="agent"><div class="agent-icon green">◉</div><div><strong>Loot Analyst</strong><small>Recommendation AI</small></div><i class="status online"></i><span>ONLINE</span><div class="load"><i style="width:35%"></i></div><b>35%</b></div>
+    </div>
+  </div>
+
+  <div class="panel chart-panel">
+    <div class="panel-head"><div><span class="tag purple-tag">ANALYTICS</span><h2>Execution Performance</h2></div><select onchange="changeChart(this.value)"><option>Last 7 Days</option><option>Last 30 Days</option><option>Today</option></select></div>
+    <div class="chart"><div class="y"><span>100</span><span>75</span><span>50</span><span>25</span><span>0</span></div><div class="bars" id="bars"></div></div>
+    <div class="chart-legend"><span><i></i>Successful</span><span><i class="purple-dot"></i>Failed / Retry</span></div>
+  </div>
+</section>
+
+<section class="grid three">
+  <div class="panel compact">
+    <div class="panel-head"><h2>Task Queue</h2><a href="tasks.html">OPEN →</a></div>
+    <div class="queue-item"><span class="qnum">01</span><div><b>Analyze player telemetry</b><small>Nova Sentinel • 2m</small></div><label>HIGH</label></div>
+    <div class="queue-item"><span class="qnum">02</span><div><b>Generate weekly report</b><small>Loot Analyst • 8m</small></div><label class="med">MED</label></div>
+    <div class="queue-item"><span class="qnum">03</span><div><b>Sync leaderboard data</b><small>Pixel Scout • 14m</small></div><label>HIGH</label></div>
+  </div>
+  <div class="panel compact">
+    <div class="panel-head"><h2>Recent Activity</h2><a href="activity.html">LOG →</a></div>
+    <div class="timeline"><div><i></i><b>Quest Runner</b> completed mission <small>32 sec ago</small></div><div><i></i><b>Nova Sentinel</b> detected anomaly <small>4 min ago</small></div><div><i></i><b>Pixel Scout</b> started execution <small>7 min ago</small></div><div><i></i><b>Sandeep</b> approved workflow <small>12 min ago</small></div></div>
+  </div>
+  <div class="panel compact level">
+    <div class="panel-head"><h2>Command XP</h2><span>LVL 24</span></div><div class="level-ring"><strong>8,420</strong><small>/ 10,000 XP</small></div><div class="xp big"><i style="width:84%"></i></div><p>Next rank: <b>Agent Commander</b></p></div>
+</section>
+
+<footer>AGENTX • AUTONOMOUS GAMER OPERATIONS <span>v2.4.0</span></footer>
+</main>
+<script src="app.js"></script>
+</body>
+</html>

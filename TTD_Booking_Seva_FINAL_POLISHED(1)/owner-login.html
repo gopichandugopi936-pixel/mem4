@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Owner Login | TTD Booking Seva</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+            background:
+                radial-gradient(circle at top, #3b2608, transparent 40%),
+                linear-gradient(135deg, #050505, #15100a, #000);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .login-box {
+            width: 400px;
+            max-width: 92%;
+            padding: 40px 32px;
+            border: 1px solid rgba(212,175,55,.5);
+            border-radius: 24px;
+            background: rgba(20, 16, 8, .82);
+            backdrop-filter: blur(18px);
+            box-shadow:
+                0 0 40px rgba(212,175,55,.15),
+                inset 0 0 30px rgba(255,255,255,.02);
+            text-align: center;
+        }
+
+        .icon {
+            font-size: 55px;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            color: #d4af37;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            color: #aaa;
+            margin-bottom: 28px;
+        }
+
+        .field {
+            text-align: left;
+            margin-bottom: 18px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #ddd;
+        }
+
+        input {
+            width: 100%;
+            padding: 14px;
+            border-radius: 12px;
+            border: 1px solid #604d18;
+            background: #0d0d0d;
+            color: white;
+            outline: none;
+            font-size: 15px;
+        }
+
+        input:focus {
+            border-color: #d4af37;
+            box-shadow: 0 0 12px rgba(212,175,55,.2);
+        }
+
+        .login-button {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #d4af37, #8f6b16);
+            color: #080808;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+            transition: .3s;
+        }
+
+        .login-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(212,175,55,.25);
+        }
+
+        #loginMessage {
+            min-height: 25px;
+            margin-top: 15px;
+            font-size: 14px;
+        }
+
+        .back {
+            display: inline-block;
+            margin-top: 22px;
+            color: #d4af37;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="login-box">
+
+    <div class="icon">🛕</div>
+
+    <h1>Owner Login</h1>
+
+    <p class="subtitle">
+        TTD Booking Seva Management
+    </p>
+
+    <form onsubmit="return ownerLogin(event)">
+
+        <div class="field">
+            <label for="email">Owner Email</label>
+            <input
+                type="email"
+                id="email"
+                placeholder="Enter owner email"
+                required
+            >
+        </div>
+
+        <div class="field">
+            <label for="password">Password</label>
+            <input
+                type="password"
+                id="password"
+                placeholder="Enter password"
+                required
+            >
+        </div>
+
+        <button type="submit" class="login-button">
+            Login to Dashboard
+        </button>
+
+        <div id="loginMessage"></div>
+
+    </form>
+
+    <a href="index.html" class="back">
+        ← Back to Home
+    </a>
+
+</div>
+
+<script src="auth.js"></script>
+
+</body>
+</html>

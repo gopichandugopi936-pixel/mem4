@@ -1,0 +1,1412 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Darshan Timings | TTD Booking Seva</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+
+        /* =========================
+           PAGE BACKGROUND
+        ========================= */
+
+        body {
+            background:
+                radial-gradient(
+                    circle at 20% 20%,
+                    rgba(255, 215, 106, 0.10),
+                    transparent 30%
+                ),
+                radial-gradient(
+                    circle at 80% 70%,
+                    rgba(255, 180, 70, 0.08),
+                    transparent 30%
+                ),
+                #080808;
+
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+
+        /* =========================
+           NAVIGATION
+        ========================= */
+
+        .darshan-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+
+            background: rgba(8, 8, 8, 0.88);
+            backdrop-filter: blur(18px);
+
+            border-bottom:
+                1px solid rgba(255, 215, 106, 0.20);
+        }
+
+        .darshan-nav-inner {
+            max-width: 1250px;
+            min-height: 72px;
+
+            margin: auto;
+            padding: 0 25px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            color: #ffd76a;
+            font-size: 20px;
+            font-weight: 800;
+        }
+
+        .brand-icon {
+            width: 42px;
+            height: 42px;
+
+            border-radius: 50%;
+
+            display: grid;
+            place-items: center;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #ffd76a,
+                    #a86b00
+                );
+
+            color: #111;
+
+            box-shadow:
+                0 0 25px rgba(255, 215, 106, 0.35);
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .nav-menu a {
+            padding: 10px 12px;
+
+            border-radius: 10px;
+
+            color: #ddd;
+
+            font-size: 14px;
+
+            transition: 0.3s;
+        }
+
+        .nav-menu a:hover,
+        .nav-menu a.active {
+            color: #ffd76a;
+
+            background:
+                rgba(255, 215, 106, 0.08);
+
+            transform: translateY(-2px);
+        }
+
+        .owner-link {
+            background:
+                linear-gradient(
+                    135deg,
+                    #ffd76a,
+                    #b87905
+                ) !important;
+
+            color: #111 !important;
+            font-weight: 700;
+        }
+
+
+        /* =========================
+           MAIN PAGE
+        ========================= */
+
+        .darshan-page {
+            max-width: 1200px;
+            margin: auto;
+
+            padding:
+                135px 25px 70px;
+        }
+
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        .darshan-header {
+            text-align: center;
+
+            margin-bottom: 55px;
+
+            animation:
+                fadeUp 0.8s ease;
+        }
+
+        .mini-badge {
+            display: inline-block;
+
+            padding: 8px 16px;
+
+            border-radius: 30px;
+
+            border:
+                1px solid rgba(255, 215, 106, 0.3);
+
+            color: #ffd76a;
+
+            background:
+                rgba(255, 215, 106, 0.07);
+
+            font-size: 13px;
+
+            letter-spacing: 1px;
+        }
+
+        .darshan-header h1 {
+            margin-top: 18px;
+
+            font-size:
+                clamp(40px, 6vw, 70px);
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #fff,
+                    #ffd76a,
+                    #fff
+                );
+
+            -webkit-background-clip: text;
+            color: transparent;
+
+            background-size: 200%;
+
+            animation:
+                shine 4s linear infinite;
+        }
+
+        .darshan-header p {
+            max-width: 700px;
+
+            margin:
+                15px auto 0;
+
+            color: #aaa;
+
+            line-height: 1.8;
+
+            font-size: 16px;
+        }
+
+
+        /* =========================
+           3D TEMPLE
+        ========================= */
+
+        .temple-area {
+            height: 380px;
+
+            display: grid;
+            place-items: center;
+
+            position: relative;
+
+            perspective: 1000px;
+
+            margin-bottom: 35px;
+        }
+
+        .temple-glow {
+            position: absolute;
+
+            width: 330px;
+            height: 330px;
+
+            border-radius: 50%;
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(255, 215, 106, 0.24),
+                    transparent 65%
+                );
+
+            filter: blur(12px);
+        }
+
+        .orbit {
+            position: absolute;
+
+            width: 310px;
+            height: 310px;
+
+            border:
+                1px solid
+                rgba(255, 215, 106, 0.30);
+
+            border-radius: 50%;
+
+            animation:
+                orbit 12s linear infinite;
+        }
+
+        .orbit::before,
+        .orbit::after {
+            content: "";
+
+            position: absolute;
+
+            width: 10px;
+            height: 10px;
+
+            border-radius: 50%;
+
+            background: #ffd76a;
+
+            box-shadow:
+                0 0 20px #ffd76a;
+        }
+
+        .orbit::before {
+            top: 25px;
+            left: 50%;
+        }
+
+        .orbit::after {
+            bottom: 25px;
+            right: 50%;
+        }
+
+        .temple-3d {
+            width: 270px;
+            height: 270px;
+
+            position: relative;
+
+            transform-style:
+                preserve-3d;
+
+            animation:
+                floatingTemple 4s ease-in-out infinite;
+        }
+
+        .tower {
+            position: absolute;
+
+            width: 175px;
+            height: 215px;
+
+            left: 50%;
+            bottom: 45px;
+
+            transform:
+                translateX(-50%);
+
+            clip-path:
+                polygon(
+                    50% 0,
+                    100% 27%,
+                    86% 100%,
+                    14% 100%,
+                    0 27%
+                );
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #754900,
+                    #ffd76a,
+                    #8c5700
+                );
+
+            box-shadow:
+                0 30px 60px
+                rgba(0,0,0,0.6);
+        }
+
+        .tower::before {
+            content:
+                "✦ ✦ ✦ ✦ ✦";
+
+            position: absolute;
+
+            top: 35px;
+            left: 15px;
+            right: 15px;
+
+            text-align: center;
+
+            color: #fff3b0;
+
+            font-size: 23px;
+
+            line-height: 40px;
+        }
+
+        .tower::after {
+            content:
+                "✦\A ✦ ✦\A ✦ ✦ ✦";
+
+            white-space: pre;
+
+            position: absolute;
+
+            top: 80px;
+            left: 0;
+            width: 100%;
+
+            text-align: center;
+
+            color: #6b4000;
+
+            font-size: 24px;
+
+            line-height: 35px;
+        }
+
+        .base {
+            position: absolute;
+
+            width: 275px;
+            height: 60px;
+
+            left: 50%;
+            bottom: 0;
+
+            transform:
+                translateX(-50%);
+
+            border-radius: 10px;
+
+            background:
+                linear-gradient(
+                    #a66d0b,
+                    #4c2d00
+                );
+
+            box-shadow:
+                0 20px 40px
+                rgba(0,0,0,.6);
+        }
+
+        .door {
+            position: absolute;
+
+            width: 58px;
+            height: 90px;
+
+            left: 50%;
+            bottom: 42px;
+
+            transform:
+                translateX(-50%);
+
+            border-radius:
+                30px 30px 0 0;
+
+            background: #130c00;
+
+            border:
+                3px solid #ffd76a;
+
+            z-index: 5;
+        }
+
+        .flag {
+            position: absolute;
+
+            width: 4px;
+            height: 80px;
+
+            left: 50%;
+            top: 5px;
+
+            transform:
+                translateX(-50%);
+
+            background: #ffd76a;
+
+            z-index: 6;
+        }
+
+        .flag::after {
+            content: "";
+
+            position: absolute;
+
+            top: 0;
+            left: 3px;
+
+            width: 45px;
+            height: 25px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #ffd76a,
+                    #a86b00
+                );
+
+            clip-path:
+                polygon(
+                    0 0,
+                    100% 50%,
+                    0 100%
+                );
+        }
+
+
+        /* =========================
+           TIMING CARDS
+        ========================= */
+
+        .timing-title {
+            text-align: center;
+
+            margin:
+                40px 0 30px;
+        }
+
+        .timing-title h2 {
+            font-size: 35px;
+
+            color: #ffd76a;
+        }
+
+        .timing-title p {
+            color: #888;
+
+            margin-top: 8px;
+        }
+
+        .timing-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 22px;
+        }
+
+        .timing-card {
+            position: relative;
+
+            padding: 30px;
+
+            min-height: 220px;
+
+            border-radius: 22px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255,255,255,.07),
+                    rgba(255,255,255,.015)
+                );
+
+            border:
+                1px solid
+                rgba(255,215,106,.13);
+
+            overflow: hidden;
+
+            transition:
+                transform .4s,
+                border .4s,
+                box-shadow .4s;
+        }
+
+        .timing-card::before {
+            content: "";
+
+            position: absolute;
+
+            width: 130px;
+            height: 130px;
+
+            right: -45px;
+            top: -45px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(255,215,106,.07);
+        }
+
+        .timing-card:hover {
+            transform:
+                perspective(900px)
+                rotateX(4deg)
+                rotateY(-4deg)
+                translateY(-8px);
+
+            border-color:
+                rgba(255,215,106,.45);
+
+            box-shadow:
+                0 25px 60px
+                rgba(0,0,0,.45);
+        }
+
+        .timing-icon {
+            width: 55px;
+            height: 55px;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 15px;
+
+            background:
+                rgba(255,215,106,.10);
+
+            border:
+                1px solid
+                rgba(255,215,106,.18);
+
+            font-size: 27px;
+
+            margin-bottom: 20px;
+        }
+
+        .timing-card h2 {
+            color: #ffd76a;
+
+            margin-bottom: 10px;
+        }
+
+        .timing-card p {
+            color: #999;
+
+            line-height: 1.7;
+
+            margin-bottom: 12px;
+        }
+
+        .time {
+            display: inline-block;
+
+            padding: 9px 15px;
+
+            border-radius: 10px;
+
+            color: #fff;
+
+            background:
+                rgba(255,215,106,.08);
+
+            border:
+                1px solid
+                rgba(255,215,106,.20);
+
+            font-weight: 700;
+        }
+
+
+        /* =========================
+           INFO SECTION
+        ========================= */
+
+        .info-box {
+            margin-top: 35px;
+
+            padding: 25px;
+
+            border-radius: 18px;
+
+            border:
+                1px solid
+                rgba(255,215,106,.18);
+
+            background:
+                rgba(255,215,106,.045);
+
+            color: #aaa;
+
+            line-height: 1.8;
+
+            text-align: center;
+        }
+
+        .info-box strong {
+            color: #ffd76a;
+        }
+
+
+        /* =========================
+           CTA
+        ========================= */
+
+        .darshan-cta {
+            margin-top: 50px;
+
+            padding: 40px;
+
+            border-radius: 25px;
+
+            text-align: center;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(255,215,106,.10),
+                    rgba(255,255,255,.025)
+                );
+
+            border:
+                1px solid
+                rgba(255,215,106,.18);
+        }
+
+        .darshan-cta h2 {
+            font-size: 32px;
+
+            margin-bottom: 12px;
+
+            color: #ffd76a;
+        }
+
+        .darshan-cta p {
+            color: #999;
+
+            margin-bottom: 22px;
+        }
+
+        .cta-buttons {
+            display: flex;
+
+            justify-content: center;
+
+            gap: 14px;
+
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+
+            align-items: center;
+            justify-content: center;
+
+            padding: 13px 22px;
+
+            border-radius: 12px;
+
+            font-weight: 700;
+
+            transition: .3s;
+        }
+
+        .btn-primary {
+            background:
+                linear-gradient(
+                    135deg,
+                    #ffd76a,
+                    #b87905
+                );
+
+            color: #111;
+
+            box-shadow:
+                0 12px 30px
+                rgba(255,193,7,.20);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-5px);
+        }
+
+        .btn-outline {
+            border:
+                1px solid
+                rgba(255,215,106,.35);
+
+            color: #ffd76a;
+
+            background:
+                rgba(255,255,255,.03);
+        }
+
+        .btn-outline:hover {
+            background:
+                rgba(255,215,106,.08);
+
+            transform:
+                translateY(-4px);
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            margin-top: 40px;
+
+            padding: 40px 20px;
+
+            text-align: center;
+
+            color: #777;
+
+            border-top:
+                1px solid
+                rgba(255,215,106,.12);
+        }
+
+        footer strong {
+            color: #ffd76a;
+        }
+
+
+        /* =========================
+           CURSOR
+        ========================= */
+
+        .cursor-dot {
+            position: fixed;
+
+            width: 7px;
+            height: 7px;
+
+            border-radius: 50%;
+
+            background: #ffd76a;
+
+            pointer-events: none;
+
+            z-index: 99999;
+
+            transform:
+                translate(-50%, -50%);
+        }
+
+        .cursor-glow {
+            position: fixed;
+
+            width: 75px;
+            height: 75px;
+
+            border:
+                1px solid
+                rgba(255,215,106,.25);
+
+            border-radius: 50%;
+
+            pointer-events: none;
+
+            z-index: 99998;
+
+            transform:
+                translate(-50%, -50%);
+
+            transition:
+                width .2s,
+                height .2s;
+        }
+
+        body.cursor-active .cursor-glow {
+            width: 105px;
+            height: 105px;
+
+            border-color:
+                rgba(255,215,106,.45);
+        }
+
+
+        /* =========================
+           ANIMATIONS
+        ========================= */
+
+        @keyframes fadeUp {
+
+            from {
+                opacity: 0;
+                transform:
+                    translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform:
+                    translateY(0);
+            }
+
+        }
+
+        @keyframes shine {
+
+            0% {
+                background-position: 0%;
+            }
+
+            100% {
+                background-position: 200%;
+            }
+
+        }
+
+        @keyframes orbit {
+
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+
+        }
+
+        @keyframes floatingTemple {
+
+            0%, 100% {
+                transform:
+                    translateY(0)
+                    rotateY(-5deg);
+            }
+
+            50% {
+                transform:
+                    translateY(-15px)
+                    rotateY(5deg);
+            }
+
+        }
+
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media(max-width: 1000px) {
+
+            .nav-menu a {
+                font-size: 12px;
+                padding: 8px;
+            }
+
+            .timing-grid {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+
+        @media(max-width: 700px) {
+
+            .darshan-nav-inner {
+                flex-direction: column;
+
+                gap: 12px;
+
+                padding:
+                    15px;
+            }
+
+            .nav-menu {
+                gap: 3px;
+            }
+
+            .darshan-page {
+                padding-top: 50px;
+            }
+
+            .temple-area {
+                height: 320px;
+            }
+
+            .orbit {
+                width: 260px;
+                height: 260px;
+            }
+
+            .temple-3d {
+                transform: scale(.82);
+            }
+
+            .timing-card {
+                padding: 24px;
+            }
+
+            .darshan-cta {
+                padding: 28px 20px;
+            }
+
+            .cursor-dot,
+            .cursor-glow {
+                display: none;
+            }
+
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     NAVIGATION
+========================= -->
+
+<nav class="darshan-nav">
+
+    <div class="darshan-nav-inner">
+
+        <a href="index.html" class="brand">
+
+            <span class="brand-icon">ॐ</span>
+
+            <span>TTD Booking Seva</span>
+
+        </a>
+
+
+        <div class="nav-menu">
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="darshan.html" class="active">
+                Darshan
+            </a>
+
+            <a href="sevas.html">
+                Sevas
+            </a>
+
+            <a href="gallery.html">
+                Gallery
+            </a>
+
+            <a href="temple.html">
+                Temple
+            </a>
+
+            <a href="contact.html">
+                Help
+            </a>
+
+            <a href="customer-login.html">
+                Customer Login
+            </a>
+
+            <a href="owner-login.html"
+               class="owner-link">
+                Owner Login
+            </a>
+
+        </div>
+
+    </div>
+
+</nav>
+
+
+<!-- =========================
+     MAIN
+========================= -->
+
+<main class="darshan-page">
+
+
+    <!-- HEADER -->
+
+    <section class="darshan-header">
+
+        <span class="mini-badge">
+            🛕 DEVOTIONAL EXPERIENCE
+        </span>
+
+        <h1>
+            Darshan Timings
+        </h1>
+
+        <p>
+            Explore the Darshan schedule through an
+            interactive devotional dashboard experience.
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         3D TEMPLE
+    ========================= -->
+
+    <section class="temple-area">
+
+        <div class="temple-glow"></div>
+
+        <div class="orbit"></div>
+
+        <div class="temple-3d">
+
+            <div class="flag"></div>
+
+            <div class="tower"></div>
+
+            <div class="door"></div>
+
+            <div class="base"></div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         TIMINGS
+    ========================= -->
+
+    <section>
+
+        <div class="timing-title">
+
+            <h2>
+                Today's Darshan Windows
+            </h2>
+
+            <p>
+                Sample schedule for your project interface
+            </p>
+
+        </div>
+
+
+        <div class="timing-grid">
+
+
+            <!-- SUPRABHATAM -->
+
+            <article class="timing-card">
+
+                <div class="timing-icon">
+                    🌅
+                </div>
+
+                <h2>
+                    Suprabhatam
+                </h2>
+
+                <p>
+                    Early morning devotional seva
+                    and spiritual experience.
+                </p>
+
+                <span class="time">
+                    05:00 AM
+                </span>
+
+            </article>
+
+
+            <!-- SPECIAL ENTRY -->
+
+            <article class="timing-card">
+
+                <div class="timing-icon">
+                    🎟️
+                </div>
+
+                <h2>
+                    Special Entry
+                </h2>
+
+                <p>
+                    Sample priority Darshan slot
+                    for the project interface.
+                </p>
+
+                <span class="time">
+                    06:00 AM – 09:00 AM
+                </span>
+
+            </article>
+
+
+            <!-- SARVA DARSHAN -->
+
+            <article class="timing-card">
+
+                <div class="timing-icon">
+                    🙏
+                </div>
+
+                <h2>
+                    Sarva Darshan
+                </h2>
+
+                <p>
+                    General Darshan schedule shown
+                    for the website demonstration.
+                </p>
+
+                <span class="time">
+                    09:00 AM – 06:00 PM
+                </span>
+
+            </article>
+
+
+            <!-- EVENING -->
+
+            <article class="timing-card">
+
+                <div class="timing-icon">
+                    🌆
+                </div>
+
+                <h2>
+                    Evening Darshan
+                </h2>
+
+                <p>
+                    Sample evening devotional
+                    Darshan window.
+                </p>
+
+                <span class="time">
+                    06:00 PM – 09:00 PM
+                </span>
+
+            </article>
+
+
+        </div>
+
+
+        <!-- INFORMATION -->
+
+        <div class="info-box">
+
+            <strong>Important:</strong>
+
+            The timings displayed on this page are
+            sample information for the project UI.
+            Please verify current official schedules
+            before making travel or booking decisions.
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         CTA
+    ========================= -->
+
+    <section class="darshan-cta">
+
+        <h2>
+            Continue Your Devotional Journey
+        </h2>
+
+        <p>
+            Explore Sevas, Temple information and
+            the complete gallery.
+        </p>
+
+        <div class="cta-buttons">
+
+            <a href="sevas.html"
+               class="btn btn-primary">
+
+                🙏 Explore Sevas
+
+            </a>
+
+            <a href="temple.html"
+               class="btn btn-outline">
+
+                🏛️ Temple Details
+
+            </a>
+
+            <a href="gallery.html"
+               class="btn btn-outline">
+
+                📸 View Gallery
+
+            </a>
+
+        </div>
+
+    </section>
+
+
+</main>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+    <p>
+        <strong>TTD Booking Seva</strong>
+    </p>
+
+    <p style="margin-top:8px;">
+        Devotional Portal Interface
+    </p>
+
+    <p style="margin-top:8px;">
+        © 2026 TTD Booking Seva
+    </p>
+
+</footer>
+
+
+<!-- =========================
+     JAVASCRIPT
+========================= -->
+
+<script>
+
+(function () {
+
+    /* Create cursor */
+
+    const glow =
+        document.createElement("div");
+
+    const dot =
+        document.createElement("div");
+
+
+    glow.className =
+        "cursor-glow";
+
+    dot.className =
+        "cursor-dot";
+
+
+    document.body.append(
+        glow,
+        dot
+    );
+
+
+    let tx = 0;
+    let ty = 0;
+
+    let gx = 0;
+    let gy = 0;
+
+
+    /* Mouse movement */
+
+    document.addEventListener(
+        "mousemove",
+        function (event) {
+
+            tx = event.clientX;
+            ty = event.clientY;
+
+            dot.style.left =
+                tx + "px";
+
+            dot.style.top =
+                ty + "px";
+
+        }
+    );
+
+
+    /* Smooth glow movement */
+
+    function animate() {
+
+        gx +=
+            (tx - gx) * 0.16;
+
+        gy +=
+            (ty - gy) * 0.16;
+
+
+        glow.style.left =
+            gx + "px";
+
+        glow.style.top =
+            gy + "px";
+
+
+        requestAnimationFrame(
+            animate
+        );
+
+    }
+
+    animate();
+
+
+    /* Hover effect */
+
+    document
+        .querySelectorAll(
+            "a, button, .timing-card, .btn"
+        )
+        .forEach(function (element) {
+
+            element.addEventListener(
+                "mouseenter",
+                function () {
+
+                    document.body
+                        .classList
+                        .add("cursor-active");
+
+                }
+            );
+
+
+            element.addEventListener(
+                "mouseleave",
+                function () {
+
+                    document.body
+                        .classList
+                        .remove("cursor-active");
+
+                }
+            );
+
+        });
+
+
+})();
+
+</script>
+
+
+</body>
+</html>

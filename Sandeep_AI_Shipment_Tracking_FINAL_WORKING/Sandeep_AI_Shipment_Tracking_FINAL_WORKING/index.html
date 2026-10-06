@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>ShipMind AI — Sandeep</title>
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<div id="toast"></div>
+
+<aside class="sidebar">
+  <div class="logo"><div class="logoMark">✦</div><div><b>ShipMind</b><small>AI Logistics</small></div></div>
+  <div class="profile"><div class="avatar">S</div><div><b>Sandeep</b><small>Administrator</small></div></div>
+  <nav>
+    <p>WORKSPACE</p>
+    <button class="nav active" data-page="dashboard">⌂ <span>Dashboard</span></button>
+    <button class="nav" data-page="shipments">▣ <span>Shipments</span><em>24</em></button>
+    <button class="nav" data-page="tracking">◉ <span>Live Tracking</span></button>
+    <button class="nav" data-page="analytics">◈ <span>AI Analytics</span></button>
+    <button class="nav" data-page="reports">▤ <span>Reports</span></button>
+    <p>AI INTERFACES</p>
+    <button class="nav" data-page="assistant">✦ <span>AI Assistant</span></button>
+    <button class="nav" data-page="search">⌕ <span>AI Search</span></button>
+    <button class="nav" data-page="copilot">⚡ <span>AI Copilot</span></button>
+    <button class="nav" data-page="generator">✎ <span>Content Generator</span></button>
+    <button class="nav" data-page="summarizer">▤ <span>Document Summarizer</span></button>
+    <p>MANAGE</p>
+    <button class="nav" data-page="notifications">♢ <span>Notifications</span><em>4</em></button>
+    <button class="nav" data-page="team">♙ <span>Team</span></button>
+    <button class="nav" data-page="settings">⚙ <span>Settings</span></button>
+  </nav>
+  <div class="sideBottom"><button id="themeBtn">◐ Theme</button><button id="cmdBtn">⌘ Command</button></div>
+</aside>
+
+<main>
+<header>
+  <button class="mobileMenu" id="mobileMenu">☰</button>
+  <button class="globalSearch" id="globalSearch">⌕ <span>Ask anything about your shipments...</span><kbd>Ctrl K</kbd></button>
+  <div class="headRight"><button id="bell">♧</button><div class="avatar">S</div></div>
+</header>
+
+<!-- DASHBOARD -->
+<section class="page activePage" id="dashboard">
+  <div class="hero">
+    <div><label>AI LOGISTICS COMMAND CENTER</label><h1>Good evening, Sandeep <span>✦</span></h1><p>ShipMind analyzed your network and found <b>7 items</b> that need attention.</p></div>
+    <button class="primary" data-open-ai>✦ Ask ShipMind</button>
+  </div>
+  <div class="cards four">
+    <div class="card metric"><span>Total Shipments</span><b class="up">↗ 12.8%</b><strong>1,284</strong><small>Across 18 active routes</small></div>
+    <div class="card metric"><span>In Transit</span><b class="up">↗ 8.4%</b><strong>438</strong><small>34.1% of total volume</small></div>
+    <div class="card metric"><span>Delivered</span><b class="up">↗ 15.2%</b><strong>796</strong><small>98.2% success rate</small></div>
+    <div class="card metric risk"><span>At Risk</span><b class="danger">7 alerts</b><strong>23</strong><small>AI detected potential delays</small></div>
+  </div>
+  <div class="grid2">
+    <div class="card">
+      <div class="cardHead"><div><label>REAL-TIME</label><h2>Shipment Pulse</h2></div><button class="ghost" data-page-go="tracking">View map ↗</button></div>
+      <div class="route"><div class="routeDots"><i></i><span></span><i></i><span></span><i></i></div>
+      <div class="routeNames"><div><b>Chennai</b><small>Origin · 09:42 AM</small></div><div><b>Bengaluru</b><small>Current · In transit</small></div><div><b>Hyderabad</b><small>Destination · Tomorrow</small></div></div></div>
+      <div class="shipRows" id="dashRows"></div>
+    </div>
+    <div class="card dark">
+      <div class="aiIcon">✦</div><label>SHIPMIND AI</label><h2>AI Assistant</h2>
+      <p>I found <b>3 actionable insights</b> across your delivery network.</p>
+      <div class="insight">⚠ <div><b>23 shipments may arrive late</b><small>Weather and hub congestion detected.</small></div></div>
+      <div class="insight">↗ <div><b>₹84,200 cost opportunity</b><small>Optimize 4 high-volume routes.</small></div></div>
+      <div class="insight">✓ <div><b>98.2% delivery performance</b><small>Best result in the last 30 days.</small></div></div>
+      <button class="primary wide" data-open-ai>Open AI Copilot →</button>
+    </div>
+  </div>
+  <div class="grid2">
+    <div class="card"><div class="cardHead"><div><label>AI ANALYTICS</label><h2>Delivery Performance</h2></div><select id="period"><option>Last 30 days</option><option>Last 7 days</option><option>This year</option></select></div><canvas id="performanceChart"></canvas></div>
+    <div class="card"><div class="cardHead"><div><label>AI RISK ENGINE</label><h2>Risk Radar</h2></div></div><div class="score"><div class="ring">92<span>/100</span></div><div><b>Network health</b><strong>Excellent</strong><small>7 exceptions need review</small></div></div><div class="bars"><p>Weather <i><u style="width:22%"></u></i><b>Low</b></p><p>Congestion <i><u style="width:58%"></u></i><b>Med</b></p><p>Capacity <i><u style="width:18%"></u></i><b>Low</b></p></div></div>
+  </div>
+</section>
+
+<!-- SHIPMENTS -->
+<section class="page" id="shipments">
+  <div class="sectionHead"><div><label>SHIPMENT CONTROL</label><h1>All Shipments</h1></div><button class="primary" id="newShipment">＋ New Shipment</button></div>
+  <div class="filters card"><input id="shipmentSearch" placeholder="⌕ Search tracking ID, customer or route"><button class="filter active" data-filter="All">All</button><button class="filter" data-filter="In Transit">In Transit</button><button class="filter" data-filter="Delivered">Delivered</button><button class="filter" data-filter="At Risk">At Risk</button></div>
+  <div class="card tableCard"><table><thead><tr><th>Tracking ID</th><th>Route</th><th>Customer</th><th>Status</th><th>ETA</th><th>AI Risk</th><th></th></tr></thead><tbody id="shipmentTable"></tbody></table></div>
+</section>
+
+<!-- TRACKING -->
+<section class="page" id="tracking">
+  <div class="sectionHead"><div><label>LIVE OPERATIONS</label><h1>Live Shipment Tracking</h1></div><span class="live">● LIVE</span></div>
+  <div class="trackingGrid">
+    <div class="card map"><div class="mapTop"><h2>India Network</h2><button class="ghost" id="centerMap">Center map</button></div><div class="fakeMap"><div class="india">INDIA<br><small>LIVE ROUTE NETWORK</small></div><span class="pin p1">●</span><span class="pin p2">●</span><span class="pin p3">●</span><span class="pin p4">●</span><div class="routeLine r1"></div><div class="routeLine r2"></div><div class="routeLine r3"></div></div></div>
+    <div class="card"><label>SELECTED SHIPMENT</label><h2 id="selectedId">SPX-28491</h2><div class="eta" id="trackingEta"><small>Estimated arrival</small><b>Tomorrow · 2:40 PM</b><span>86% confidence</span></div><div id="trackingDetails"></div><div class="timeline"><div class="done"><i>✓</i><div><b>Picked up</b><small>Chennai · 09:42 AM</small></div></div><div class="done"><i>✓</i><div><b>Hub scanned</b><small>Chennai Hub · 12:10 PM</small></div></div><div class="current"><i>●</i><div><b>In transit</b><small>NH44 · Bengaluru corridor</small></div></div><div><i>○</i><div><b>Out for delivery</b><small>Pending</small></div></div><div><i>○</i><div><b>Delivered</b><small>Pending</small></div></div></div></div>
+  </div>
+</section>
+
+<!-- ANALYTICS -->
+<section class="page" id="analytics">
+  <div class="sectionHead"><div><label>AI-POWERED ANALYTICS</label><h1>Logistics Intelligence</h1></div><button class="primary" id="askData">✦ Ask Your Data</button></div>
+  <div class="cards four"><div class="card metric"><span>On-time Rate</span><strong>98.2%</strong><small>+3.7% vs last month</small></div><div class="card metric"><span>Avg. Delivery</span><strong>2.8d</strong><small>-0.4 days improvement</small></div><div class="card metric"><span>Cost / Shipment</span><strong>₹184</strong><small>-8.6% optimized</small></div><div class="card metric"><span>AI Confidence</span><strong>94%</strong><small>Across predictions</small></div></div>
+  <div class="grid2"><div class="card"><div class="cardHead"><div><label>TEXT-TO-CHART</label><h2>Describe your chart</h2></div></div><div class="prompt"><input id="chartPrompt" value="Show delivery performance by month"><button id="makeChart">Generate</button></div><canvas id="analyticsChart"></canvas></div><div class="card"><label>AI INSIGHTS</label><h2>What changed?</h2><div class="bigInsight"><span>↗</span><div><b>Delivery improved 3.7%</b><p>Chennai → Hyderabad is your best-performing lane.</p></div></div><div class="bigInsight"><span>⚠</span><div><b>Congestion rising in Pune</b><p>AI recommends shifting 12% of volume.</p></div></div><div class="bigInsight"><span>₹</span><div><b>₹84,200 savings opportunity</b><p>Consolidate four under-utilized routes.</p></div></div></div></div>
+</section>
+
+<!-- REPORTS -->
+<section class="page" id="reports">
+ <div class="sectionHead"><div><label>AI REPORT GENERATOR</label><h1>Reports</h1></div><button class="primary" id="generateReport">✦ Generate Report</button></div>
+ <div class="cards three"><div class="report card"><span>◈</span><h3>Executive Report</h3><p>Performance, cost and risk summary.</p><button class="ghost generate">Generate →</button></div><div class="report card"><span>◉</span><h3>Delay Analysis</h3><p>Root causes of delayed shipments.</p><button class="ghost generate">Generate →</button></div><div class="report card"><span>▤</span><h3>Customer SLA</h3><p>Delivery compliance by customer.</p><button class="ghost generate">Generate →</button></div></div>
+ <div id="reportOutput"></div>
+</section>
+
+<!-- AI PAGES -->
+<section class="page" id="assistant"><div class="aiPage card"><div class="aiIcon">✦</div><label>AI ASSISTANT</label><h1>How can I help, Sandeep?</h1><p>Ask about shipments, routes, costs, delays or customers.</p><div class="suggestions"><button data-query="Which shipments are at risk today?">⚠ At-risk shipments</button><button data-query="Summarize today's delivery performance">✦ Daily summary</button><button data-query="Find the cheapest route to Mumbai">₹ Optimize routes</button><button data-query="Create an executive report">▤ Create report</button></div><div class="chat"><input id="assistantInput" placeholder="Ask ShipMind anything..."><button id="assistantAsk">↑</button></div><div id="assistantAnswer"></div></div></section>
+<section class="page" id="search"><div class="aiPage"><label>NATURAL-LANGUAGE QUERY</label><h1>Ask your shipment data.</h1><p>Type a question in plain English and get an AI-style answer.</p><div class="bigPrompt"><textarea id="searchQuery" placeholder="e.g. Show me delayed shipments going to Hyderabad"></textarea><button id="searchAsk">Ask AI ✦</button></div><div id="searchResult"></div></div></section>
+<section class="page" id="copilot"><div class="aiPage card"><div class="aiIcon">⚡</div><label>AI COPILOT</label><h1>Your proactive logistics copilot.</h1><p>ShipMind continuously monitors shipments and suggests the next best action.</p><div class="copilotGrid"><div><b>23</b><small>Potential delays</small></div><div><b>7</b><small>Urgent alerts</small></div><div><b>₹84K</b><small>Potential savings</small></div><div><b>94%</b><small>Prediction confidence</small></div></div><button class="primary" id="copilotScan">Run AI Network Scan</button><div id="copilotResult"></div></div></section>
+<section class="page" id="generator"><div class="aiPage card"><label>AI CONTENT GENERATOR</label><h1>Create customer updates instantly.</h1><select id="contentType"><option>Delay notification</option><option>Delivery confirmation</option><option>Shipment update</option><option>Executive message</option></select><input id="contentTopic" placeholder="Enter shipment/customer details"><button class="primary" id="generateContent">Generate Content</button><textarea id="contentResult" readonly placeholder="Generated message will appear here..."></textarea></div></section>
+<section class="page" id="summarizer"><div class="aiPage card"><label>AI DOCUMENT SUMMARIZER</label><h1>Summarize logistics documents.</h1><textarea id="docText" placeholder="Paste a manifest, invoice, email or shipment document here..."></textarea><button class="primary" id="summarize">Summarize Document</button><div id="summaryResult"></div></div></section>
+
+<!-- MANAGE -->
+<section class="page" id="notifications"><div class="sectionHead"><div><label>ALERT CENTER</label><h1>Notifications</h1></div><button class="ghost" id="clearNotifications">Mark all read</button></div><div class="card notifications"><div class="notification unread">⚠ <div><b>7 shipments need attention</b><p>AI detected a high probability of delay.</p><small>5 minutes ago</small></div></div><div class="notification">✦ <div><b>New AI optimization</b><p>Potential ₹84,200 route savings found.</p><small>32 minutes ago</small></div></div><div class="notification">✓ <div><b>Shipment SPX-28442 delivered</b><p>Customer received the package successfully.</p><small>1 hour ago</small></div></div><div class="notification">◉ <div><b>Weather alert</b><p>Heavy rain expected on Chennai–Kochi route.</p><small>2 hours ago</small></div></div></div></section>
+<section class="page" id="team"><div class="sectionHead"><div><label>WORKSPACE</label><h1>Team Management</h1></div><button class="primary" id="invite">＋ Invite member</button></div><div class="cards three"><div class="card member"><div class="avatar">S</div><h3>Sandeep</h3><p>Administrator</p><span>Active</span></div><div class="card member"><div class="avatar">A</div><h3>Ananya</h3><p>Operations Manager</p><span>Active</span></div><div class="card member"><div class="avatar">R</div><h3>Rahul</h3><p>Fleet Analyst</p><span>Active</span></div></div></section>
+<section class="page" id="settings"><div class="sectionHead"><div><label>ACCOUNT</label><h1>Settings</h1></div></div><div class="card settings"><div class="profileLarge"><div class="avatar big">S</div><div><h2>Sandeep</h2><p>Administrator · ShipMind Workspace</p></div></div><label>Display name<input id="nameInput" value="Sandeep"></label><label>Email<input value="sandeep@shipmind.ai"></label><label>Company<input value="Sandeep Logistics"></label><button class="primary" id="saveSettings">Save changes</button></div></section>
+
+</main>
+
+<!-- COMMAND MODAL -->
+<div class="overlay" id="commandModal"><div class="command"><button class="x" data-close>×</button><input id="commandInput" placeholder="⌘ Search pages, actions, shipments..."><div id="commandList"><button data-page-go="dashboard">⌂ Dashboard</button><button data-page-go="shipments">▣ Shipments</button><button data-page-go="tracking">◉ Live Tracking</button><button data-page-go="analytics">◈ AI Analytics</button><button data-page-go="assistant">✦ AI Assistant</button><button data-page-go="search">⌕ AI Search</button><button data-page-go="reports">▤ Reports</button><button data-page-go="settings">⚙ Settings</button></div></div></div>
+
+<!-- NEW SHIPMENT -->
+<div class="overlay" id="newModal"><div class="modalCard"><button class="x" data-close>×</button><label>CREATE SHIPMENT</label><h2>New Shipment</h2><input id="newCustomer" placeholder="Customer name"><input id="newRoute" placeholder="Route e.g. Chennai → Delhi"><input id="newEta" placeholder="ETA e.g. Oct 10"><button class="primary" id="createShipment">Create Shipment</button></div></div>
+
+<script src="assets/js/app.js"></script>
+</body>
+</html>

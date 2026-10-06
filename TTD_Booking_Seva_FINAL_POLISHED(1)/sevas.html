@@ -1,0 +1,1589 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Sevas & Special Experiences | TTD Booking Seva</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+
+        /* =========================
+           GLOBAL
+        ========================= */
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            color: #fff;
+
+            background:
+                radial-gradient(
+                    circle at 15% 20%,
+                    rgba(255, 215, 106, .10),
+                    transparent 30%
+                ),
+                radial-gradient(
+                    circle at 85% 70%,
+                    rgba(255, 180, 70, .08),
+                    transparent 30%
+                ),
+                #080808;
+
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+
+        /* =========================
+           NAVBAR
+        ========================= */
+
+        .seva-nav {
+            position: fixed;
+
+            top: 0;
+            left: 0;
+
+            width: 100%;
+
+            z-index: 1000;
+
+            background:
+                rgba(8, 8, 8, .88);
+
+            backdrop-filter:
+                blur(18px);
+
+            border-bottom:
+                1px solid
+                rgba(255, 215, 106, .20);
+        }
+
+        .nav-inner {
+            max-width: 1250px;
+
+            min-height: 72px;
+
+            margin: auto;
+
+            padding:
+                0 25px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+        }
+
+        .brand {
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            color: #ffd76a;
+
+            font-size: 20px;
+
+            font-weight: 800;
+        }
+
+        .brand-icon {
+            width: 42px;
+            height: 42px;
+
+            display: grid;
+
+            place-items: center;
+
+            border-radius: 50%;
+
+            color: #111;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #ffd76a,
+                    #a86b00
+                );
+
+            box-shadow:
+                0 0 25px
+                rgba(255, 215, 106, .35);
+        }
+
+        .nav-links {
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            flex-wrap: wrap;
+
+            gap: 5px;
+        }
+
+        .nav-links a {
+            padding:
+                10px 12px;
+
+            border-radius: 10px;
+
+            color: #ddd;
+
+            font-size: 14px;
+
+            transition: .3s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #ffd76a;
+
+            background:
+                rgba(255, 215, 106, .08);
+
+            transform:
+                translateY(-2px);
+        }
+
+        .owner-link {
+            color: #111 !important;
+
+            font-weight: 700;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #ffd76a,
+                    #b87905
+                ) !important;
+        }
+
+
+        /* =========================
+           PAGE
+        ========================= */
+
+        .page {
+            max-width: 1200px;
+
+            margin: auto;
+
+            padding:
+                135px 25px 70px;
+        }
+
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        .page-title {
+            text-align: center;
+
+            margin-bottom: 55px;
+
+            animation:
+                fadeUp .8s ease;
+        }
+
+        .badge {
+            display: inline-block;
+
+            padding:
+                8px 16px;
+
+            border-radius: 30px;
+
+            color: #ffd76a;
+
+            font-size: 13px;
+
+            letter-spacing: 1px;
+
+            background:
+                rgba(255, 215, 106, .07);
+
+            border:
+                1px solid
+                rgba(255, 215, 106, .30);
+        }
+
+        .page-title h1 {
+            margin:
+                18px 0 12px;
+
+            font-size:
+                clamp(40px, 6vw, 70px);
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #fff,
+                    #ffd76a,
+                    #fff
+                );
+
+            background-size: 200%;
+
+            -webkit-background-clip: text;
+
+            color: transparent;
+
+            animation:
+                shine 4s linear infinite;
+        }
+
+        .page-title p {
+            max-width: 700px;
+
+            margin: auto;
+
+            color: #999;
+
+            line-height: 1.8;
+
+            font-size: 16px;
+        }
+
+
+        /* =========================
+           3D SEVA SYMBOL
+        ========================= */
+
+        .seva-stage {
+            height: 320px;
+
+            display: grid;
+
+            place-items: center;
+
+            position: relative;
+
+            perspective: 1000px;
+
+            margin-bottom: 40px;
+        }
+
+        .stage-glow {
+            position: absolute;
+
+            width: 280px;
+            height: 280px;
+
+            border-radius: 50%;
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(255, 215, 106, .23),
+                    transparent 65%
+                );
+
+            filter: blur(12px);
+        }
+
+        .stage-orbit {
+            position: absolute;
+
+            width: 270px;
+            height: 270px;
+
+            border:
+                1px solid
+                rgba(255, 215, 106, .25);
+
+            border-radius: 50%;
+
+            animation:
+                rotateOrbit 12s linear infinite;
+        }
+
+        .stage-orbit::before,
+        .stage-orbit::after {
+            content: "";
+
+            position: absolute;
+
+            width: 10px;
+            height: 10px;
+
+            border-radius: 50%;
+
+            background: #ffd76a;
+
+            box-shadow:
+                0 0 20px #ffd76a;
+        }
+
+        .stage-orbit::before {
+            top: 20px;
+            left: 50%;
+        }
+
+        .stage-orbit::after {
+            bottom: 20px;
+            right: 50%;
+        }
+
+        .seva-symbol {
+            width: 170px;
+            height: 170px;
+
+            border-radius: 50%;
+
+            display: grid;
+
+            place-items: center;
+
+            font-size: 75px;
+
+            position: relative;
+
+            transform-style:
+                preserve-3d;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #ffd76a,
+                    #9a6100
+                );
+
+            border:
+                5px solid
+                rgba(255, 240, 170, .5);
+
+            box-shadow:
+                0 30px 70px
+                rgba(0, 0, 0, .6),
+                inset 0 0 35px
+                rgba(255,255,255,.2);
+
+            animation:
+                sevaFloat 4s ease-in-out infinite,
+                sevaRotate 7s ease-in-out infinite alternate;
+        }
+
+        .seva-symbol::before {
+            content: "";
+
+            position: absolute;
+
+            inset: -15px;
+
+            border-radius: 50%;
+
+            border:
+                1px solid
+                rgba(255, 215, 106, .45);
+        }
+
+
+        /* =========================
+           SEVA CARDS
+        ========================= */
+
+        .section-heading {
+            text-align: center;
+
+            margin:
+                40px 0 30px;
+        }
+
+        .section-heading h2 {
+            margin: 0;
+
+            color: #ffd76a;
+
+            font-size: 36px;
+        }
+
+        .section-heading p {
+            color: #888;
+
+            margin-top: 9px;
+        }
+
+        .seva-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 22px;
+        }
+
+        .seva-card {
+            position: relative;
+
+            padding: 30px;
+
+            min-height: 275px;
+
+            overflow: hidden;
+
+            border-radius: 22px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255,255,255,.07),
+                    rgba(255,255,255,.015)
+                );
+
+            border:
+                1px solid
+                rgba(255,215,106,.13);
+
+            transition:
+                transform .4s,
+                box-shadow .4s,
+                border .4s;
+        }
+
+        .seva-card::before {
+            content: "";
+
+            position: absolute;
+
+            width: 150px;
+            height: 150px;
+
+            top: -65px;
+            right: -65px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(255, 215, 106, .07);
+        }
+
+        .seva-card:hover {
+            transform:
+                perspective(900px)
+                rotateX(4deg)
+                rotateY(-4deg)
+                translateY(-9px);
+
+            border-color:
+                rgba(255,215,106,.45);
+
+            box-shadow:
+                0 25px 65px
+                rgba(0,0,0,.45);
+        }
+
+        .seva-icon {
+            width: 60px;
+            height: 60px;
+
+            display: grid;
+
+            place-items: center;
+
+            border-radius: 16px;
+
+            font-size: 30px;
+
+            margin-bottom: 20px;
+
+            background:
+                rgba(255,215,106,.10);
+
+            border:
+                1px solid
+                rgba(255,215,106,.20);
+        }
+
+        .seva-card h2 {
+            margin:
+                0 0 10px;
+
+            color: #ffd76a;
+        }
+
+        .seva-card p {
+            color: #999;
+
+            line-height: 1.7;
+
+            margin-bottom: 20px;
+        }
+
+        .seva-details {
+            display: flex;
+
+            gap: 10px;
+
+            flex-wrap: wrap;
+
+            margin-bottom: 20px;
+        }
+
+        .detail {
+            padding:
+                7px 11px;
+
+            border-radius: 9px;
+
+            color: #ccc;
+
+            background:
+                rgba(255,255,255,.04);
+
+            border:
+                1px solid
+                rgba(255,215,106,.12);
+
+            font-size: 13px;
+        }
+
+        .btn {
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding:
+                12px 20px;
+
+            border-radius: 11px;
+
+            font-weight: 700;
+
+            transition: .3s;
+        }
+
+        .btn-primary {
+            color: #111;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #ffd76a,
+                    #b87905
+                );
+
+            box-shadow:
+                0 10px 28px
+                rgba(255,193,7,.18);
+        }
+
+        .btn-primary:hover {
+            transform:
+                translateY(-4px);
+
+            box-shadow:
+                0 15px 35px
+                rgba(255,193,7,.30);
+        }
+
+
+        /* =========================
+           STATS
+        ========================= */
+
+        .stats-box {
+            margin-top: 30px;
+
+            padding: 35px;
+
+            border-radius: 23px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(255,215,106,.08),
+                    rgba(255,255,255,.025)
+                );
+
+            border:
+                1px solid
+                rgba(255,215,106,.18);
+        }
+
+        .stats-title {
+            text-align: center;
+
+            margin-bottom: 28px;
+        }
+
+        .stats-title h2 {
+            color: #ffd76a;
+        }
+
+        .stats-title p {
+            color: #888;
+        }
+
+        .stats-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 18px;
+        }
+
+        .stat {
+            text-align: center;
+
+            padding: 25px 15px;
+
+            border-radius: 17px;
+
+            background:
+                rgba(0,0,0,.25);
+
+            border:
+                1px solid
+                rgba(255,215,106,.10);
+
+            transition: .3s;
+        }
+
+        .stat:hover {
+            transform:
+                translateY(-6px);
+
+            border-color:
+                rgba(255,215,106,.35);
+        }
+
+        .stat strong {
+            display: block;
+
+            color: #ffd76a;
+
+            font-size: 34px;
+
+            margin-bottom: 7px;
+        }
+
+        .stat span {
+            color: #999;
+        }
+
+
+        /* =========================
+           INFORMATION
+        ========================= */
+
+        .notice {
+            margin-top: 30px;
+
+            padding: 22px;
+
+            border-radius: 16px;
+
+            text-align: center;
+
+            color: #999;
+
+            line-height: 1.7;
+
+            background:
+                rgba(255,215,106,.045);
+
+            border:
+                1px solid
+                rgba(255,215,106,.16);
+        }
+
+        .notice strong {
+            color: #ffd76a;
+        }
+
+
+        /* =========================
+           CTA
+        ========================= */
+
+        .cta {
+            margin-top: 45px;
+
+            padding: 40px 25px;
+
+            text-align: center;
+
+            border-radius: 24px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(255,215,106,.10),
+                    rgba(255,255,255,.025)
+                );
+
+            border:
+                1px solid
+                rgba(255,215,106,.18);
+        }
+
+        .cta h2 {
+            margin: 0 0 10px;
+
+            color: #ffd76a;
+
+            font-size: 32px;
+        }
+
+        .cta p {
+            color: #999;
+
+            margin-bottom: 22px;
+        }
+
+        .cta-buttons {
+            display: flex;
+
+            justify-content: center;
+
+            gap: 13px;
+
+            flex-wrap: wrap;
+        }
+
+        .btn-outline {
+            color: #ffd76a;
+
+            border:
+                1px solid
+                rgba(255,215,106,.35);
+
+            background:
+                rgba(255,255,255,.03);
+        }
+
+        .btn-outline:hover {
+            transform:
+                translateY(-4px);
+
+            background:
+                rgba(255,215,106,.08);
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            margin-top: 40px;
+
+            padding: 40px 20px;
+
+            text-align: center;
+
+            color: #777;
+
+            border-top:
+                1px solid
+                rgba(255,215,106,.12);
+        }
+
+        footer strong {
+            color: #ffd76a;
+        }
+
+
+        /* =========================
+           CURSOR
+        ========================= */
+
+        .cursor-dot {
+            position: fixed;
+
+            width: 7px;
+            height: 7px;
+
+            border-radius: 50%;
+
+            background: #ffd76a;
+
+            pointer-events: none;
+
+            z-index: 99999;
+
+            transform:
+                translate(-50%, -50%);
+        }
+
+        .cursor-glow {
+            position: fixed;
+
+            width: 75px;
+            height: 75px;
+
+            border-radius: 50%;
+
+            border:
+                1px solid
+                rgba(255,215,106,.25);
+
+            pointer-events: none;
+
+            z-index: 99998;
+
+            transform:
+                translate(-50%, -50%);
+
+            transition:
+                width .2s,
+                height .2s;
+        }
+
+        body.cursor-active
+        .cursor-glow {
+            width: 105px;
+            height: 105px;
+
+            border-color:
+                rgba(255,215,106,.45);
+        }
+
+
+        /* =========================
+           ANIMATIONS
+        ========================= */
+
+        @keyframes fadeUp {
+
+            from {
+                opacity: 0;
+
+                transform:
+                    translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+
+                transform:
+                    translateY(0);
+            }
+
+        }
+
+        @keyframes shine {
+
+            0% {
+                background-position: 0%;
+            }
+
+            100% {
+                background-position: 200%;
+            }
+
+        }
+
+        @keyframes rotateOrbit {
+
+            from {
+                transform:
+                    rotate(0deg);
+            }
+
+            to {
+                transform:
+                    rotate(360deg);
+            }
+
+        }
+
+        @keyframes sevaFloat {
+
+            0%, 100% {
+                transform:
+                    translateY(0);
+            }
+
+            50% {
+                transform:
+                    translateY(-15px);
+            }
+
+        }
+
+        @keyframes sevaRotate {
+
+            from {
+                rotate: -3deg;
+            }
+
+            to {
+                rotate: 3deg;
+            }
+
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media(max-width: 1000px) {
+
+            .nav-links a {
+                font-size: 12px;
+
+                padding:
+                    8px;
+            }
+
+            .seva-grid {
+                grid-template-columns:
+                    1fr;
+            }
+
+        }
+
+
+        @media(max-width: 700px) {
+
+            .nav-inner {
+                flex-direction: column;
+
+                gap: 12px;
+
+                padding:
+                    15px;
+            }
+
+            .page {
+                padding-top: 55px;
+            }
+
+            .seva-stage {
+                height: 280px;
+            }
+
+            .stage-orbit {
+                width: 230px;
+                height: 230px;
+            }
+
+            .seva-symbol {
+                width: 140px;
+                height: 140px;
+
+                font-size: 60px;
+            }
+
+            .stats-grid {
+                grid-template-columns:
+                    1fr;
+            }
+
+            .stats-box {
+                padding:
+                    25px 18px;
+            }
+
+            .cursor-dot,
+            .cursor-glow {
+                display: none;
+            }
+
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     NAVBAR
+========================= -->
+
+<nav class="seva-nav">
+
+    <div class="nav-inner">
+
+        <a href="index.html"
+           class="brand">
+
+            <span class="brand-icon">
+                ॐ
+            </span>
+
+            <span>
+                TTD Booking Seva
+            </span>
+
+        </a>
+
+
+        <div class="nav-links">
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="darshan.html">
+                Darshan
+            </a>
+
+            <a href="sevas.html"
+               class="active">
+                Sevas
+            </a>
+
+            <a href="gallery.html">
+                Gallery
+            </a>
+
+            <a href="temple.html">
+                Temple
+            </a>
+
+            <a href="contact.html">
+                Help
+            </a>
+
+            <a href="customer-login.html">
+                Customer Login
+            </a>
+
+            <a href="owner-login.html"
+               class="owner-link">
+                Owner Login
+            </a>
+
+        </div>
+
+    </div>
+
+</nav>
+
+
+<!-- =========================
+     MAIN
+========================= -->
+
+<main class="page">
+
+
+    <!-- HEADER -->
+
+    <section class="page-title">
+
+        <span class="badge">
+            🙏 DEVOTIONAL SERVICES
+        </span>
+
+        <h1>
+            Sevas & Special Experiences
+        </h1>
+
+        <p>
+            Explore devotional Sevas and special experiences
+            through a premium interactive booking interface.
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         3D SYMBOL
+    ========================= -->
+
+    <section class="seva-stage">
+
+        <div class="stage-glow"></div>
+
+        <div class="stage-orbit"></div>
+
+        <div class="seva-symbol">
+            🛕
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         SEVA CARDS
+    ========================= -->
+
+    <section>
+
+        <div class="section-heading">
+
+            <h2>
+                Featured Sevas
+            </h2>
+
+            <p>
+                Explore the available project Seva cards
+            </p>
+
+        </div>
+
+
+        <div class="seva-grid">
+
+
+            <!-- CARD 1 -->
+
+            <article class="seva-card">
+
+                <div class="seva-icon">
+                    🎟️
+                </div>
+
+                <h2>
+                    Special Entry Darshan
+                </h2>
+
+                <p>
+                    A premium Darshan experience presented
+                    in the project booking interface.
+                </p>
+
+                <div class="seva-details">
+
+                    <span class="detail">
+                        🕐 Morning
+                    </span>
+
+                    <span class="detail">
+                        ⭐ Priority
+                    </span>
+
+                    <span class="detail">
+                        🙏 Darshan
+                    </span>
+
+                </div>
+
+                <a href="customer-login.html"
+                   class="btn btn-primary">
+
+                    Book Now →
+
+                </a>
+
+            </article>
+
+
+            <!-- CARD 2 -->
+
+            <article class="seva-card">
+
+                <div class="seva-icon">
+                    🌅
+                </div>
+
+                <h2>
+                    Suprabhatam Seva
+                </h2>
+
+                <p>
+                    Early morning devotional experience
+                    presented as a sample Seva option.
+                </p>
+
+                <div class="seva-details">
+
+                    <span class="detail">
+                        🌅 Early Morning
+                    </span>
+
+                    <span class="detail">
+                        🙏 Seva
+                    </span>
+
+                    <span class="detail">
+                        ⭐ Special
+                    </span>
+
+                </div>
+
+                <a href="customer-login.html"
+                   class="btn btn-primary">
+
+                    View Seva →
+
+                </a>
+
+            </article>
+
+
+            <!-- CARD 3 -->
+
+            <article class="seva-card">
+
+                <div class="seva-icon">
+                    🪔
+                </div>
+
+                <h2>
+                    Archana Seva
+                </h2>
+
+                <p>
+                    Devotional Archana information displayed
+                    using a modern interactive card design.
+                </p>
+
+                <div class="seva-details">
+
+                    <span class="detail">
+                        🪔 Archana
+                    </span>
+
+                    <span class="detail">
+                        🙏 Devotional
+                    </span>
+
+                    <span class="detail">
+                        ⭐ Special
+                    </span>
+
+                </div>
+
+                <a href="customer-login.html"
+                   class="btn btn-primary">
+
+                    Continue →
+
+                </a>
+
+            </article>
+
+
+            <!-- CARD 4 -->
+
+            <article class="seva-card">
+
+                <div class="seva-icon">
+                    👨‍👩‍👧‍👦
+                </div>
+
+                <h2>
+                    Family Darshan
+                </h2>
+
+                <p>
+                    A family-oriented sample card for the
+                    TTD booking dashboard.
+                </p>
+
+                <div class="seva-details">
+
+                    <span class="detail">
+                        👨‍👩‍👧‍👦 Family
+                    </span>
+
+                    <span class="detail">
+                        🛕 Darshan
+                    </span>
+
+                    <span class="detail">
+                        ⭐ Special
+                    </span>
+
+                </div>
+
+                <a href="customer-login.html"
+                   class="btn btn-primary">
+
+                    Explore →
+
+                </a>
+
+            </article>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         STATS
+    ========================= -->
+
+    <section class="stats-box">
+
+        <div class="stats-title">
+
+            <h2>
+                Seva Dashboard
+            </h2>
+
+            <p>
+                Quick overview of the project interface
+            </p>
+
+        </div>
+
+
+        <div class="stats-grid">
+
+            <div class="stat">
+
+                <strong>4</strong>
+
+                <span>
+                    Featured Sevas
+                </span>
+
+            </div>
+
+
+            <div class="stat">
+
+                <strong>50</strong>
+
+                <span>
+                    Sample Customers
+                </span>
+
+            </div>
+
+
+            <div class="stat">
+
+                <strong>24/7</strong>
+
+                <span>
+                    Dashboard Access
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         NOTICE
+    ========================= -->
+
+    <div class="notice">
+
+        <strong>Project Information:</strong>
+
+        The Seva cards and statistics shown on this page
+        are sample content for the website project.
+        They are not official TTD ticket prices,
+        availability or booking confirmation.
+
+    </div>
+
+
+    <!-- =========================
+         CTA
+    ========================= -->
+
+    <section class="cta">
+
+        <h2>
+            Explore More
+        </h2>
+
+        <p>
+            Continue exploring Darshan, Temple information
+            and the devotional gallery.
+        </p>
+
+
+        <div class="cta-buttons">
+
+            <a href="darshan.html"
+               class="btn btn-primary">
+
+                🛕 Darshan
+
+            </a>
+
+
+            <a href="gallery.html"
+               class="btn btn-outline">
+
+                📸 Gallery
+
+            </a>
+
+
+            <a href="temple.html"
+               class="btn btn-outline">
+
+                🏛️ Temple
+
+            </a>
+
+        </div>
+
+    </section>
+
+
+</main>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+    <p>
+        <strong>TTD Booking Seva</strong>
+    </p>
+
+    <p style="margin-top:8px;">
+        Devotional Portal Interface
+    </p>
+
+    <p style="margin-top:8px;">
+        © 2026 TTD Booking Seva
+    </p>
+
+</footer>
+
+
+<!-- =========================
+     CURSOR JAVASCRIPT
+========================= -->
+
+<script>
+
+(function () {
+
+    const glow =
+        document.createElement("div");
+
+    const dot =
+        document.createElement("div");
+
+
+    glow.className =
+        "cursor-glow";
+
+    dot.className =
+        "cursor-dot";
+
+
+    document.body.append(
+        glow,
+        dot
+    );
+
+
+    let tx = 0;
+    let ty = 0;
+
+    let gx = 0;
+    let gy = 0;
+
+
+    document.addEventListener(
+        "mousemove",
+        function (event) {
+
+            tx = event.clientX;
+            ty = event.clientY;
+
+            dot.style.left =
+                tx + "px";
+
+            dot.style.top =
+                ty + "px";
+
+        }
+    );
+
+
+    function animate() {
+
+        gx +=
+            (tx - gx) * 0.16;
+
+        gy +=
+            (ty - gy) * 0.16;
+
+
+        glow.style.left =
+            gx + "px";
+
+        glow.style.top =
+            gy + "px";
+
+
+        requestAnimationFrame(
+            animate
+        );
+
+    }
+
+    animate();
+
+
+    document
+        .querySelectorAll(
+            "a, button, .seva-card, .stat"
+        )
+        .forEach(function (element) {
+
+            element.addEventListener(
+                "mouseenter",
+                function () {
+
+                    document.body
+                        .classList
+                        .add("cursor-active");
+
+                }
+            );
+
+
+            element.addEventListener(
+                "mouseleave",
+                function () {
+
+                    document.body
+                        .classList
+                        .remove("cursor-active");
+
+                }
+            );
+
+        });
+
+})();
+
+</script>
+
+
+</body>
+</html>

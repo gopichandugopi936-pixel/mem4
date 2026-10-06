@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TTD | Owner Dashboard</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--gold:#ffd166;--gold2:#d4af37;--bg:#070402;--card:rgba(255,255,255,.065);--line:rgba(255,209,102,.2);--muted:#b9aa94}
+body{font-family:Arial,Helvetica,sans-serif;color:#fff;min-height:100vh;background:
+radial-gradient(circle at 8% 5%,rgba(255,209,102,.13),transparent 24%),
+radial-gradient(circle at 90% 15%,rgba(155,44,20,.18),transparent 28%),
+linear-gradient(135deg,#090402,#261006 52%,#050202);overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.13;background-image:radial-gradient(circle,#ffd166 1px,transparent 1.5px);background-size:90px 90px}
+header{position:sticky;top:0;z-index:20;padding:16px 5%;display:flex;align-items:center;justify-content:space-between;gap:20px;background:rgba(8,4,2,.78);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:12px}.brand-icon{font-size:30px}.brand h2{font-size:19px;color:var(--gold)}.brand small{display:block;color:#8e806f;margin-top:3px}
+.actions{display:flex;gap:10px;align-items:center}.btn{border:1px solid var(--line);background:rgba(255,255,255,.04);color:var(--gold);padding:10px 15px;border-radius:11px;font-weight:700;cursor:pointer;text-decoration:none}.btn:hover{background:var(--gold);color:#171006;box-shadow:0 0 25px rgba(255,209,102,.2)}
+.wrap{width:min(1350px,92%);margin:auto;padding:34px 0 60px}
+.hero{display:flex;justify-content:space-between;align-items:end;gap:25px;margin-bottom:28px}.hero h1{font-size:clamp(30px,4vw,50px);color:#fff}.hero h1 span{color:var(--gold)}.hero p{color:var(--muted);margin-top:8px}.year{display:flex;align-items:center;gap:10px;padding:12px 15px;background:var(--card);border:1px solid var(--line);border-radius:14px}.year label{color:var(--gold);font-weight:700}.year select{background:#160b05;color:#fff;border:1px solid #76551d;border-radius:9px;padding:9px 12px}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}.card{background:linear-gradient(145deg,rgba(255,255,255,.09),rgba(255,255,255,.025));border:1px solid var(--line);border-radius:20px;padding:22px;box-shadow:0 18px 45px rgba(0,0,0,.2);transition:.3s;position:relative;overflow:hidden}.card:hover{transform:translateY(-6px);border-color:rgba(255,209,102,.55);box-shadow:0 25px 55px rgba(0,0,0,.35),0 0 25px rgba(255,209,102,.08)}.card:after{content:"";position:absolute;width:90px;height:90px;border-radius:50%;right:-35px;top:-35px;background:rgba(255,209,102,.06)}.icon{font-size:27px}.label{color:#9f9281;font-size:13px;margin-top:13px}.value{font-size:30px;font-weight:800;color:var(--gold);margin-top:6px}.trend{font-size:12px;color:#8fe0a8;margin-top:8px}
+.main{display:grid;grid-template-columns:1.35fr .65fr;gap:18px;margin-top:18px}.panel{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:24px}.panel h2{color:var(--gold);font-size:19px;margin-bottom:20px}
+.chart{height:260px;display:flex;align-items:end;gap:13px;padding:15px 8px 0;border-bottom:1px solid rgba(255,255,255,.08)}.barcol{height:100%;flex:1;display:flex;flex-direction:column;justify-content:end;align-items:center;gap:8px}.bar{width:min(44px,75%);border-radius:10px 10px 2px 2px;background:linear-gradient(180deg,#ffd166,#8f5d0d);box-shadow:0 0 20px rgba(255,209,102,.12);min-height:8px;transition:height .6s}.month{font-size:11px;color:#8f8476}.barval{font-size:10px;color:#c8b99f}
+.status-list{display:grid;gap:12px}.status{display:flex;justify-content:space-between;align-items:center;padding:14px;border-radius:13px;background:rgba(0,0,0,.22);border:1px solid rgba(255,255,255,.06)}.dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:8px}.green{background:#52e39a;box-shadow:0 0 12px #52e39a}.yellow{background:#ffd166;box-shadow:0 0 12px #ffd166}.red{background:#ff6b6b;box-shadow:0 0 12px #ff6b6b}
+.table-panel{margin-top:18px}.table-wrap{overflow:auto}table{width:100%;border-collapse:collapse;min-width:700px}th,td{text-align:left;padding:14px 12px;border-bottom:1px solid rgba(255,255,255,.07)}th{color:#8f8476;font-size:12px;text-transform:uppercase}td{color:#eee;font-size:14px}.pill{display:inline-block;padding:6px 10px;border-radius:999px;font-size:11px;font-weight:700}.confirmed{background:rgba(82,227,154,.12);color:#75e8a9}.pending{background:rgba(255,209,102,.12);color:var(--gold)}
+.quick{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}.quick a{text-decoration:none;color:#fff;padding:17px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.04);transition:.25s}.quick a:hover{transform:translateY(-3px);border-color:var(--gold)}.quick b{display:block;color:var(--gold);margin-bottom:5px}.quick span{font-size:12px;color:var(--muted)}
+footer{text-align:center;color:#746858;font-size:12px;padding-top:25px}
+@media(max-width:1000px){.grid{grid-template-columns:repeat(2,1fr)}.main{grid-template-columns:1fr}.hero{align-items:flex-start;flex-direction:column}}
+@media(max-width:600px){.grid{grid-template-columns:1fr}.quick{grid-template-columns:1fr}.hero h1{font-size:31px}.actions .home{display:none}.wrap{width:94%}.chart{gap:5px}}
+</style>
+</head>
+<body>
+<header>
+<div class="brand"><span class="brand-icon">🛕</span><div><h2>TTD Owner Dashboard</h2><small>Booking & Seva Management</small></div></div>
+<div class="actions"><a class="btn home" href="index.html">Home</a><button class="btn" onclick="ownerLogout()">Logout</button></div>
+</header>
+
+<main class="wrap">
+<section class="hero">
+<div><h1>Temple <span>Operations Dashboard</span></h1><p>Live-style overview of pilgrim bookings, darshan, seva and revenue.</p></div>
+<div class="year"><label for="year">Year</label><select id="year" onchange="render()"><option>2024</option><option>2025</option><option selected>2026</option><option>2027</option></select></div>
+</section>
+
+<section class="grid">
+<div class="card"><div class="icon">🎟️</div><div class="label">Total Bookings</div><div class="value" id="bookings">0</div><div class="trend">↗ Annual bookings</div></div>
+<div class="card"><div class="icon">🙏</div><div class="label">Darshan Visitors</div><div class="value" id="darshan">0</div><div class="trend">↗ Pilgrim visits</div></div>
+<div class="card"><div class="icon">🪔</div><div class="label">Seva Bookings</div><div class="value" id="seva">0</div><div class="trend">↗ Seva reservations</div></div>
+<div class="card"><div class="icon">💰</div><div class="label">Total Revenue</div><div class="value" id="revenue">₹0</div><div class="trend">↗ Estimated total</div></div>
+</section>
+
+<section class="main">
+<div class="panel"><h2>Monthly Booking Activity</h2><div class="chart" id="chart"></div></div>
+<div class="panel"><h2>System Overview</h2><div class="status-list">
+<div class="status"><span><i class="dot green"></i>Booking System</span><b>Online</b></div>
+<div class="status"><span><i class="dot green"></i>Seva Services</span><b>Online</b></div>
+<div class="status"><span><i class="dot yellow"></i>Payment Gateway</span><b>Monitoring</b></div>
+<div class="status"><span><i class="dot green"></i>Database</span><b>Healthy</b></div>
+</div>
+<div class="quick"><a href="sevas.html"><b>🪔 Sevas</b><span>Manage seva information</span></a><a href="darshan.html"><b>🙏 Darshan</b><span>View darshan options</span></a><a href="customers.csv"><b>👥 Customers</b><span>Open customer data</span></a></div>
+</div>
+</section>
+
+<section class="panel table-panel"><h2>Recent Bookings</h2><div class="table-wrap"><table><thead><tr><th>Booking ID</th><th>Customer</th><th>Seva</th><th>Date</th><th>Status</th></tr></thead><tbody id="recent"></tbody></table></div></section>
+<footer>TTD Booking Seva • Owner analytics dashboard • Demo data</footer>
+</main>
+
+<script src="auth.js"></script>
+<script>
+const data={
+2024:{bookings:850000,darshan:620000,seva:150000,revenue:185000000,months:[52,61,58,70,66,73,79,68,82,90,76,95]},
+2025:{bookings:960000,darshan:710000,seva:175000,revenue:215000000,months:[60,68,64,75,71,79,86,74,91,96,83,99]},
+2026:{bookings:1080000,darshan:810000,seva:190000,revenue:248000000,months:[66,74,71,82,78,86,93,81,97,100,89,96]},
+2027:{bookings:1200000,darshan:900000,seva:220000,revenue:285000000,months:[71,80,76,88,84,91,97,87,100,98,92,100]}
+};
+const months=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+function fmt(n){return n.toLocaleString("en-IN")}
+function render(){
+ const y=document.getElementById("year").value,d=data[y];
+ document.getElementById("bookings").textContent=fmt(d.bookings);
+ document.getElementById("darshan").textContent=fmt(d.darshan);
+ document.getElementById("seva").textContent=fmt(d.seva);
+ document.getElementById("revenue").textContent="₹"+fmt(d.revenue);
+ document.getElementById("chart").innerHTML=d.months.map((v,i)=>`<div class="barcol"><span class="barval">${v}</span><div class="bar" style="height:${v}%"></div><span class="month">${months[i]}</span></div>`).join("");
+ const users=["Aarav Reddy","Ananya Sharma","Arjun Kumar","Diya Das","Vivek Naidu"];
+ const sevas=["Special Entry","Sarva Darshan","Divya Darshan","Seva Darshan","Special Entry"];
+ const statuses=["Confirmed","Confirmed","Confirmed","Pending","Confirmed"];
+ document.getElementById("recent").innerHTML=users.map((n,i)=>`<tr><td>TTD${y}${String(i+1).padStart(4,"0")}</td><td>${n}</td><td>${sevas[i]}</td><td>${y}-10-${String(i+1).padStart(2,"0")}</td><td><span class="pill ${statuses[i].toLowerCase()}">${statuses[i]}</span></td></tr>`).join("");
+}
+function ownerLogout(){
+ localStorage.removeItem("ttdOwnerLoggedIn");
+ window.location.href="owner-login.html";
+}
+render();
+</script>
+</body>
+</html>

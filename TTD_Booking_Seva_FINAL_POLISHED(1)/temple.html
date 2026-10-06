@@ -1,0 +1,1613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Temple Experience | TTD Booking Seva</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+*{
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    overflow-x:hidden;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.temple-hero{
+    min-height:620px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    align-items:center;
+    gap:40px;
+    padding:70px 0;
+    position:relative;
+}
+
+.temple-hero::before{
+    content:"";
+    position:absolute;
+    width:500px;
+    height:500px;
+    border-radius:50%;
+    background:radial-gradient(
+        circle,
+        rgba(212,175,55,.18),
+        transparent 70%
+    );
+    filter:blur(20px);
+    top:20px;
+    left:50%;
+    transform:translateX(-50%);
+    pointer-events:none;
+}
+
+/* =========================
+   TEXT
+========================= */
+
+.temple-content{
+    position:relative;
+    z-index:2;
+}
+
+.temple-badge{
+    display:inline-block;
+    padding:9px 18px;
+    border-radius:30px;
+    color:#d4af37;
+    border:1px solid rgba(212,175,55,.5);
+    background:rgba(212,175,55,.08);
+    font-size:13px;
+    letter-spacing:1.5px;
+    margin-bottom:20px;
+    animation:badgeFloat 3s ease-in-out infinite;
+}
+
+@keyframes badgeFloat{
+    0%,100%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-6px);
+    }
+}
+
+.temple-content h1{
+    font-size:clamp(42px,6vw,72px);
+    line-height:1.05;
+    margin:0 0 20px;
+
+    background:linear-gradient(
+        90deg,
+        #fff,
+        #d4af37,
+        #fff
+    );
+
+    background-size:200% auto;
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+
+    animation:goldText 5s linear infinite;
+}
+
+@keyframes goldText{
+    to{
+        background-position:200% center;
+    }
+}
+
+.temple-content p{
+    max-width:580px;
+    font-size:17px;
+    line-height:1.8;
+    opacity:.78;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+.temple-buttons{
+    display:flex;
+    gap:14px;
+    flex-wrap:wrap;
+    margin-top:28px;
+}
+
+.temple-btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    padding:13px 22px;
+    border-radius:30px;
+    text-decoration:none;
+    color:#111;
+
+    background:linear-gradient(
+        135deg,
+        #f6d365,
+        #d4af37
+    );
+
+    font-weight:700;
+
+    box-shadow:
+        0 10px 30px rgba(212,175,55,.2);
+
+    transition:.35s ease;
+}
+
+.temple-btn:hover{
+    transform:translateY(-4px) scale(1.03);
+
+    box-shadow:
+        0 18px 40px rgba(212,175,55,.35);
+}
+
+.temple-btn.secondary{
+    color:white;
+    background:rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.18);
+    box-shadow:none;
+}
+
+/* =========================
+   3D TEMPLE SCENE
+========================= */
+
+.temple-scene{
+    position:relative;
+    width:420px;
+    height:470px;
+    margin:auto;
+
+    perspective:900px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+/* Glow */
+
+.temple-light{
+    position:absolute;
+    width:360px;
+    height:360px;
+    border-radius:50%;
+
+    background:radial-gradient(
+        circle,
+        rgba(212,175,55,.32),
+        rgba(212,175,55,.08),
+        transparent 70%
+    );
+
+    filter:blur(15px);
+
+    animation:templePulse 4s ease-in-out infinite;
+}
+
+@keyframes templePulse{
+    0%,100%{
+        transform:scale(.9);
+        opacity:.65;
+    }
+
+    50%{
+        transform:scale(1.08);
+        opacity:1;
+    }
+}
+
+/* Orbit */
+
+.temple-orbit{
+    position:absolute;
+    width:390px;
+    height:150px;
+
+    border:1px solid rgba(212,175,55,.35);
+    border-radius:50%;
+
+    animation:orbitSpin 10s linear infinite;
+}
+
+@keyframes orbitSpin{
+    from{
+        transform:rotateX(65deg) rotateZ(0deg);
+    }
+
+    to{
+        transform:rotateX(65deg) rotateZ(360deg);
+    }
+}
+
+.temple-orbit::before,
+.temple-orbit::after{
+    content:"";
+    position:absolute;
+
+    width:12px;
+    height:12px;
+
+    border-radius:50%;
+
+    background:#d4af37;
+
+    box-shadow:
+        0 0 20px #d4af37;
+}
+
+.temple-orbit::before{
+    top:15px;
+    left:55px;
+}
+
+.temple-orbit::after{
+    right:45px;
+    bottom:12px;
+}
+
+/* =========================
+   TEMPLE BUILDING
+========================= */
+
+.temple-building{
+    position:relative;
+
+    width:245px;
+    height:330px;
+
+    transform-style:preserve-3d;
+
+    /* Animation removed here.
+       JS controls the transform safely. */
+
+    transition:transform .15s ease-out;
+}
+
+/* Base */
+
+.temple-base{
+    position:absolute;
+    bottom:0;
+    left:0;
+
+    width:245px;
+    height:70px;
+
+    border-radius:10px 10px 5px 5px;
+
+    background:linear-gradient(
+        90deg,
+        #6b4217,
+        #d4af37,
+        #8a5a20,
+        #d4af37,
+        #6b4217
+    );
+
+    box-shadow:
+        0 20px 40px rgba(0,0,0,.5);
+}
+
+/* Main */
+
+.temple-main{
+    position:absolute;
+
+    bottom:55px;
+    left:25px;
+
+    width:195px;
+    height:145px;
+
+    background:linear-gradient(
+        135deg,
+        #d4af37,
+        #fff1a8,
+        #b8860b
+    );
+
+    clip-path:polygon(
+        0 25%,
+        15% 25%,
+        15% 0,
+        85% 0,
+        85% 25%,
+        100% 25%,
+        100% 100%,
+        0 100%
+    );
+
+    box-shadow:
+        inset 0 0 25px rgba(255,255,255,.35);
+}
+
+/* Tower */
+
+.temple-tower{
+    position:absolute;
+
+    bottom:190px;
+    left:67px;
+
+    width:110px;
+    height:85px;
+
+    background:linear-gradient(
+        135deg,
+        #e5c354,
+        #fff0a3,
+        #b8860b
+    );
+
+    clip-path:polygon(
+        50% 0,
+        100% 100%,
+        0 100%
+    );
+
+    filter:drop-shadow(
+        0 10px 15px rgba(0,0,0,.35)
+    );
+}
+
+/* Dome */
+
+.temple-dome{
+    position:absolute;
+
+    bottom:268px;
+    left:92px;
+
+    width:60px;
+    height:35px;
+
+    border-radius:50% 50% 10px 10px;
+
+    background:linear-gradient(
+        135deg,
+        #f7df72,
+        #b8860b
+    );
+
+    box-shadow:
+        0 0 20px rgba(212,175,55,.5);
+}
+
+/* Kalasam */
+
+.temple-kalasam{
+    position:absolute;
+
+    bottom:298px;
+    left:116px;
+
+    width:13px;
+    height:32px;
+
+    background:linear-gradient(
+        90deg,
+        #8b6508,
+        #ffe88b,
+        #8b6508
+    );
+
+    border-radius:50% 50% 20% 20%;
+}
+
+.temple-kalasam::before{
+    content:"";
+
+    position:absolute;
+
+    width:30px;
+    height:7px;
+
+    left:-8px;
+    bottom:0;
+
+    border-radius:50%;
+
+    background:#d4af37;
+}
+
+/* Door */
+
+.temple-door{
+    position:absolute;
+
+    bottom:55px;
+    left:95px;
+
+    width:55px;
+    height:88px;
+
+    background:linear-gradient(
+        90deg,
+        #241306,
+        #6b4217,
+        #241306
+    );
+
+    border-radius:28px 28px 4px 4px;
+
+    border:4px solid #d4af37;
+
+    box-shadow:
+        0 0 18px rgba(212,175,55,.5);
+}
+
+.temple-door::after{
+    content:"ॐ";
+
+    position:absolute;
+
+    top:22px;
+    left:50%;
+
+    transform:translateX(-50%);
+
+    color:#d4af37;
+
+    font-size:25px;
+}
+
+/* Pillars */
+
+.pillar{
+    position:absolute;
+
+    bottom:55px;
+
+    width:14px;
+    height:105px;
+
+    border-radius:4px;
+
+    background:linear-gradient(
+        90deg,
+        #8b6508,
+        #ffe58a,
+        #8b6508
+    );
+}
+
+.pillar.left{
+    left:55px;
+}
+
+.pillar.right{
+    right:55px;
+}
+
+/* Flag */
+
+.temple-flag{
+    position:absolute;
+
+    bottom:330px;
+    left:125px;
+
+    width:4px;
+    height:75px;
+
+    background:#d4af37;
+
+    z-index:4;
+}
+
+.temple-flag::after{
+    content:"";
+
+    position:absolute;
+
+    top:0;
+    left:4px;
+
+    width:52px;
+    height:30px;
+
+    background:linear-gradient(
+        135deg,
+        #b8860b,
+        #f6d365
+    );
+
+    clip-path:polygon(
+        0 0,
+        100% 0,
+        78% 50%,
+        100% 100%,
+        0 100%
+    );
+}
+
+/* =========================
+   HIGHLIGHTS
+========================= */
+
+.temple-highlights{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:18px;
+
+    margin:30px 0 55px;
+}
+
+.highlight{
+    padding:25px 18px;
+
+    text-align:center;
+
+    border-radius:20px;
+
+    background:rgba(255,255,255,.045);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    backdrop-filter:blur(10px);
+
+    transition:.4s ease;
+}
+
+.highlight:hover{
+    transform:translateY(-8px);
+
+    border-color:rgba(212,175,55,.45);
+
+    box-shadow:
+        0 15px 35px rgba(0,0,0,.25);
+}
+
+.highlight-icon{
+    font-size:30px;
+    margin-bottom:10px;
+}
+
+.highlight strong{
+    display:block;
+    font-size:24px;
+    color:#d4af37;
+}
+
+.highlight span{
+    display:block;
+    margin-top:5px;
+    font-size:13px;
+    opacity:.7;
+}
+
+/* =========================
+   SECTION HEADING
+========================= */
+
+.section-heading{
+    text-align:center;
+    margin:20px 0 35px;
+}
+
+.section-heading h2{
+    font-size:34px;
+    margin-bottom:10px;
+}
+
+.section-heading p{
+    opacity:.7;
+}
+
+/* =========================
+   EXPERIENCE CARDS
+========================= */
+
+.experience-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+
+    gap:25px;
+
+    margin-bottom:55px;
+}
+
+.experience-card{
+    position:relative;
+
+    padding:32px;
+
+    min-height:230px;
+
+    border-radius:24px;
+
+    background:linear-gradient(
+        145deg,
+        rgba(255,255,255,.07),
+        rgba(255,255,255,.025)
+    );
+
+    border:1px solid rgba(255,255,255,.08);
+
+    overflow:hidden;
+
+    transition:.45s ease;
+}
+
+.experience-card::before{
+    content:"";
+
+    position:absolute;
+
+    width:130px;
+    height:130px;
+
+    border-radius:50%;
+
+    right:-60px;
+    top:-60px;
+
+    background:rgba(212,175,55,.12);
+
+    filter:blur(5px);
+
+    transition:.5s ease;
+}
+
+.experience-card:hover{
+    transform:translateY(-10px) scale(1.01);
+
+    border-color:rgba(212,175,55,.45);
+
+    box-shadow:
+        0 25px 55px rgba(0,0,0,.3);
+}
+
+.experience-card:hover::before{
+    transform:scale(2);
+}
+
+.experience-icon{
+    font-size:38px;
+    margin-bottom:18px;
+}
+
+.experience-card h3{
+    margin:0 0 10px;
+    font-size:21px;
+}
+
+.experience-card p{
+    line-height:1.7;
+    opacity:.72;
+    font-size:14px;
+}
+
+/* =========================
+   TIMELINE
+========================= */
+
+.timeline-box{
+    padding:35px;
+
+    border-radius:26px;
+
+    background:linear-gradient(
+        135deg,
+        rgba(212,175,55,.08),
+        rgba(255,255,255,.025)
+    );
+
+    border:1px solid rgba(212,175,55,.18);
+
+    margin-bottom:55px;
+}
+
+.timeline{
+    position:relative;
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:25px;
+}
+
+.timeline::before{
+    content:"";
+
+    position:absolute;
+
+    top:35px;
+    left:16%;
+
+    width:68%;
+    height:2px;
+
+    background:linear-gradient(
+        90deg,
+        transparent,
+        #d4af37,
+        transparent
+    );
+}
+
+.timeline-item{
+    position:relative;
+
+    text-align:center;
+
+    z-index:2;
+}
+
+.timeline-number{
+    width:65px;
+    height:65px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    margin:auto auto 18px;
+
+    border-radius:50%;
+
+    background:#151515;
+
+    border:2px solid #d4af37;
+
+    color:#d4af37;
+
+    font-weight:800;
+
+    box-shadow:
+        0 0 25px rgba(212,175,55,.2);
+}
+
+.timeline-item h3{
+    margin:0 0 8px;
+}
+
+.timeline-item p{
+    margin:0;
+
+    font-size:13px;
+
+    opacity:.7;
+
+    line-height:1.6;
+}
+
+/* =========================
+   CTA
+========================= */
+
+.temple-cta{
+    text-align:center;
+
+    padding:50px 25px;
+
+    border-radius:28px;
+
+    margin-bottom:60px;
+
+    background:radial-gradient(
+        circle at center,
+        rgba(212,175,55,.16),
+        rgba(255,255,255,.025)
+    );
+
+    border:1px solid rgba(212,175,55,.22);
+}
+
+.temple-cta h2{
+    font-size:32px;
+    margin:0 0 12px;
+}
+
+.temple-cta p{
+    max-width:600px;
+    margin:0 auto 25px;
+    opacity:.7;
+}
+
+/* =========================
+   SCROLL REVEAL
+========================= */
+
+.reveal{
+    opacity:0;
+    transform:translateY(30px);
+
+    transition:
+        opacity .7s ease,
+        transform .7s ease;
+}
+
+.reveal.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+/* =========================
+   CURSOR
+========================= */
+
+.cursor-glow{
+    position:fixed;
+
+    width:85px;
+    height:85px;
+
+    border-radius:50%;
+
+    pointer-events:none;
+
+    transform:translate(-50%,-50%);
+
+    background:radial-gradient(
+        circle,
+        rgba(212,175,55,.17),
+        transparent 70%
+    );
+
+    z-index:999999;
+}
+
+.cursor-dot{
+    position:fixed;
+
+    width:7px;
+    height:7px;
+
+    border-radius:50%;
+
+    pointer-events:none;
+
+    transform:translate(-50%,-50%);
+
+    background:#d4af37;
+
+    box-shadow:
+        0 0 15px #d4af37;
+
+    z-index:1000000;
+}
+
+body.cursor-active .cursor-glow{
+    width:120px;
+    height:120px;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:1000px){
+
+    .temple-hero{
+        grid-template-columns:1fr;
+        text-align:center;
+    }
+
+    .temple-content p{
+        margin-left:auto;
+        margin-right:auto;
+    }
+
+    .temple-buttons{
+        justify-content:center;
+    }
+
+    .temple-highlights{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .experience-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .timeline{
+        grid-template-columns:1fr;
+    }
+
+    .timeline::before{
+        display:none;
+    }
+}
+
+@media(max-width:650px){
+
+    .temple-hero{
+        padding-top:45px;
+    }
+
+    .temple-scene{
+        transform:scale(.78);
+
+        margin-top:-30px;
+        margin-bottom:-50px;
+    }
+
+    .temple-highlights{
+        grid-template-columns:1fr;
+    }
+
+    .experience-grid{
+        grid-template-columns:1fr;
+    }
+
+    .timeline-box{
+        padding:25px 18px;
+    }
+
+    .temple-content h1{
+        font-size:42px;
+    }
+
+    .cursor-glow,
+    .cursor-dot{
+        display:none;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- =========================
+     NAVIGATION
+========================= -->
+
+<nav class="nav">
+    <div class="wrap">
+
+        <a href="index.html">
+            TTD Booking Seva
+        </a>
+
+        <a href="index.html">
+            Home
+        </a>
+
+        <a href="darshan.html">
+            Darshan
+        </a>
+
+        <a href="sevas.html">
+            Sevas
+        </a>
+
+        <a href="gallery.html">
+            Gallery
+        </a>
+
+        <a href="temple.html">
+            Temple
+        </a>
+
+        <a href="contact.html">
+            Help
+        </a>
+
+        <a href="customer-login.html">
+            Customer Login
+        </a>
+
+        <a href="owner-login.html">
+            Owner Login
+        </a>
+
+    </div>
+</nav>
+
+
+<!-- =========================
+     MAIN
+========================= -->
+
+<main class="page">
+
+<div class="wrap">
+
+<!-- HERO -->
+
+<section class="temple-hero">
+
+    <div class="temple-content reveal">
+
+        <div class="temple-badge">
+            🛕 SACRED TIRUMALA EXPERIENCE
+        </div>
+
+        <h1>
+            Temple<br>
+            Experience
+        </h1>
+
+        <p>
+            Experience a premium devotional interface inspired by
+            the sacred atmosphere, golden architecture and peaceful
+            journey of Tirumala Tirupati.
+        </p>
+
+        <div class="temple-buttons">
+
+            <a
+                href="darshan.html"
+                class="temple-btn">
+                🙏 Explore Darshan
+            </a>
+
+            <a
+                href="sevas.html"
+                class="temple-btn secondary">
+                ✨ Explore Sevas
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <!-- 3D TEMPLE -->
+
+    <div class="temple-scene reveal">
+
+        <div class="temple-light"></div>
+
+        <div class="temple-orbit"></div>
+
+        <div class="temple-building">
+
+            <div class="temple-flag"></div>
+
+            <div class="temple-kalasam"></div>
+
+            <div class="temple-dome"></div>
+
+            <div class="temple-tower"></div>
+
+            <div class="temple-main"></div>
+
+            <div class="pillar left"></div>
+
+            <div class="pillar right"></div>
+
+            <div class="temple-door"></div>
+
+            <div class="temple-base"></div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- HIGHLIGHTS -->
+
+<section class="temple-highlights">
+
+    <div class="highlight reveal">
+
+        <div class="highlight-icon">🛕</div>
+
+        <strong>1</strong>
+
+        <span>Sacred Temple</span>
+
+    </div>
+
+
+    <div class="highlight reveal">
+
+        <div class="highlight-icon">✨</div>
+
+        <strong>24/7</strong>
+
+        <span>Digital Access</span>
+
+    </div>
+
+
+    <div class="highlight reveal">
+
+        <div class="highlight-icon">🙏</div>
+
+        <strong>∞</strong>
+
+        <span>Devotional Spirit</span>
+
+    </div>
+
+
+    <div class="highlight reveal">
+
+        <div class="highlight-icon">📱</div>
+
+        <strong>100%</strong>
+
+        <span>Responsive UI</span>
+
+    </div>
+
+</section>
+
+
+<!-- EXPERIENCE HEADING -->
+
+<section class="section-heading reveal">
+
+    <h2>
+        ✨ Sacred Experience
+    </h2>
+
+    <p>
+        Discover the main elements of this devotional journey.
+    </p>
+
+</section>
+
+
+<!-- EXPERIENCE CARDS -->
+
+<section class="experience-grid">
+
+    <div class="experience-card reveal">
+
+        <div class="experience-icon">🛕</div>
+
+        <h3>
+            Sacred Atmosphere
+        </h3>
+
+        <p>
+            Layered gradients, glowing elements and glass-style
+            panels create a warm devotional visual experience.
+        </p>
+
+    </div>
+
+
+    <div class="experience-card reveal">
+
+        <div class="experience-icon">✨</div>
+
+        <h3>
+            Golden Architecture
+        </h3>
+
+        <p>
+            Gold accents, animated highlights and a CSS-built
+            temple create a premium visual presentation.
+        </p>
+
+    </div>
+
+
+    <div class="experience-card reveal">
+
+        <div class="experience-icon">🌅</div>
+
+        <h3>
+            Morning Journey
+        </h3>
+
+        <p>
+            Explore sample darshan schedules and seva categories
+            through the connected pages of the project.
+        </p>
+
+    </div>
+
+
+    <div class="experience-card reveal">
+
+        <div class="experience-icon">🙏</div>
+
+        <h3>
+            Devotional Journey
+        </h3>
+
+        <p>
+            Move from temple information to darshan, sevas and
+            the gallery using the navigation buttons.
+        </p>
+
+    </div>
+
+
+    <div class="experience-card reveal">
+
+        <div class="experience-icon">📸</div>
+
+        <h3>
+            Visual Gallery
+        </h3>
+
+        <p>
+            View the project's devotional image collection with
+            interactive image previews and effects.
+        </p>
+
+    </div>
+
+
+    <div class="experience-card reveal">
+
+        <div class="experience-icon">🎫</div>
+
+        <h3>
+            Booking Journey
+        </h3>
+
+        <p>
+            Customers can continue to the customer login page
+            from the booking-related sections.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- FLOW HEADING -->
+
+<section class="section-heading reveal">
+
+    <h2>
+        🪔 Experience Flow
+    </h2>
+
+    <p>
+        A simple journey through the TTD Booking Seva project.
+    </p>
+
+</section>
+
+
+<!-- TIMELINE -->
+
+<section class="timeline-box reveal">
+
+    <div class="timeline">
+
+        <div class="timeline-item">
+
+            <div class="timeline-number">
+                01
+            </div>
+
+            <h3>
+                Choose
+            </h3>
+
+            <p>
+                Explore darshan or seva categories.
+            </p>
+
+        </div>
+
+
+        <div class="timeline-item">
+
+            <div class="timeline-number">
+                02
+            </div>
+
+            <h3>
+                Sign In
+            </h3>
+
+            <p>
+                Continue through the customer login page.
+            </p>
+
+        </div>
+
+
+        <div class="timeline-item">
+
+            <div class="timeline-number">
+                03
+            </div>
+
+            <h3>
+                Explore
+            </h3>
+
+            <p>
+                View the connected booking and information pages.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- CTA -->
+
+<section class="temple-cta reveal">
+
+    <h2>
+        🙏 Begin Your Devotional Journey
+    </h2>
+
+    <p>
+        Explore the temple, discover darshan schedules,
+        view sevas and experience the devotional gallery.
+    </p>
+
+    <div class="temple-buttons">
+
+        <a
+            href="gallery.html"
+            class="temple-btn">
+            📸 View Gallery
+        </a>
+
+        <a
+            href="contact.html"
+            class="temple-btn secondary">
+            💬 Help Center
+        </a>
+
+    </div>
+
+</section>
+
+</div>
+
+</main>
+
+
+<!-- FOOTER -->
+
+<footer>
+    🙏 TTD Booking Seva • Temple Experience
+</footer>
+
+
+<!-- =========================
+     JAVASCRIPT
+========================= -->
+
+<script>
+
+(function(){
+
+"use strict";
+
+
+/* =========================
+   CURSOR EFFECT
+========================= */
+
+const glow = document.createElement("div");
+const dot = document.createElement("div");
+
+glow.className = "cursor-glow";
+dot.className = "cursor-dot";
+
+document.body.appendChild(glow);
+document.body.appendChild(dot);
+
+let mouseX = 0;
+let mouseY = 0;
+
+let glowX = 0;
+let glowY = 0;
+
+document.addEventListener("mousemove", function(event){
+
+    mouseX = event.clientX;
+    mouseY = event.clientY;
+
+    dot.style.left = mouseX + "px";
+    dot.style.top = mouseY + "px";
+
+});
+
+
+function animateGlow(){
+
+    glowX += (mouseX - glowX) * 0.14;
+    glowY += (mouseY - glowY) * 0.14;
+
+    glow.style.left = glowX + "px";
+    glow.style.top = glowY + "px";
+
+    requestAnimationFrame(animateGlow);
+}
+
+animateGlow();
+
+
+/* =========================
+   CURSOR HOVER
+========================= */
+
+document
+.querySelectorAll(
+    "a, button, .experience-card, .highlight"
+)
+.forEach(function(element){
+
+    element.addEventListener(
+        "mouseenter",
+        function(){
+            document.body.classList.add("cursor-active");
+        }
+    );
+
+    element.addEventListener(
+        "mouseleave",
+        function(){
+            document.body.classList.remove("cursor-active");
+        }
+    );
+
+});
+
+
+/* =========================
+   SCROLL REVEAL
+========================= */
+
+const revealElements =
+    document.querySelectorAll(".reveal");
+
+
+if("IntersectionObserver" in window){
+
+    const observer =
+        new IntersectionObserver(
+            function(entries){
+
+                entries.forEach(
+                    function(entry){
+
+                        if(entry.isIntersecting){
+
+                            entry.target.classList.add("show");
+
+                            observer.unobserve(
+                                entry.target
+                            );
+                        }
+
+                    }
+                );
+
+            },
+            {
+                threshold:0.12
+            }
+        );
+
+
+    revealElements.forEach(
+        function(element){
+            observer.observe(element);
+        }
+    );
+
+}else{
+
+    revealElements.forEach(
+        function(element){
+            element.classList.add("show");
+        }
+    );
+
+}
+
+
+/* =========================
+   3D TEMPLE MOUSE EFFECT
+========================= */
+
+const scene =
+    document.querySelector(".temple-scene");
+
+const building =
+    document.querySelector(".temple-building");
+
+
+if(scene && building){
+
+    scene.addEventListener(
+        "mousemove",
+        function(event){
+
+            const rect =
+                scene.getBoundingClientRect();
+
+            const x =
+                event.clientX - rect.left;
+
+            const y =
+                event.clientY - rect.top;
+
+            const rotateY =
+                ((x / rect.width) - 0.5) * 14;
+
+            const rotateX =
+                ((y / rect.height) - 0.5) * -10;
+
+            building.style.transform =
+                "translateY(0) rotateX(" +
+                rotateX +
+                "deg) rotateY(" +
+                rotateY +
+                "deg)";
+
+        }
+    );
+
+
+    scene.addEventListener(
+        "mouseleave",
+        function(){
+
+            building.style.transform =
+                "translateY(0) rotateX(3deg) rotateY(-8deg)";
+
+        }
+    );
+
+}
+
+
+/* =========================
+   BUTTON CLICK EFFECT
+========================= */
+
+document
+.querySelectorAll(".temple-btn")
+.forEach(function(button){
+
+    button.addEventListener(
+        "click",
+        function(){
+
+            button.style.transform =
+                "scale(.96)";
+
+            setTimeout(
+                function(){
+
+                    button.style.transform = "";
+
+                },
+                150
+            );
+
+        }
+    );
+
+});
+
+})();
+
+</script>
+
+</body>
+</html>
